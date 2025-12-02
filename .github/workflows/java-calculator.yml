@@ -183,7 +183,7 @@ jobs:
         uses: baileyjm02/markdown-to-pdf@v1
         with:
           input_path: summary.md
-          output_dir: .
+          output_dir: pdf
           build_html: false
 
       - name: Upload PDF summary
@@ -191,6 +191,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: summary-pdf
-          path: summary.pdf
+          path: pdf/summary.pdf
           if-no-files-found: ignore
   
