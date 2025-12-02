@@ -1,4 +1,4 @@
-name: Test Calculadora
+name: Code Compliance
 
 on:
   push:
@@ -6,86 +6,191 @@ on:
   pull_request:
     branches: [ main, master ]
 
+# jobs:
+#   test-calculadora:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
+  
+#       - name: Java Configuration
+#         uses: actions/setup-java@v4
+#         with:
+#           distribution: 'temurin'
+#           java-version: '21'
+  
+#       - name: Tests Execution
+#         run: mvn -B test
+        
+#       - name: Installing pandoc and LaTex
+#         if: always()
+#         run: |
+#           sudo apt-get update
+#           sudo apt-get install -y libxml2-utils pandoc texlive-latex-base texlive-latex-recommended texlive-latex-extra
+
+      # - name: Write reports
+      #   if: always()
+      #   run: |
+      #     REPORT="tests-report.md"
+      #     echo "# Informe detallado de tests" > $REPORT
+      #     echo "" >> $REPORT
+      #     echo "- Estado general del job: **${{ job.status }}**" >> $REPORT
+      #     echo "- Fecha: $(date)" >> $REPORT
+      #     echo "" >> $REPORT
+          
+      #     echo "## Resultados por test" >> $REPORT
+      #     echo "" >> $REPORT
+          
+      #     for FILE in target/surefire-reports/*.xml; do
+      #       echo "Procesando $FILE ..."
+      #       CLASSNAME=$(xmllint --xpath "string(/testsuite/@name)" "$FILE" 2>/dev/null)
+            
+      #       echo "### Clase: \`$CLASSNAME\`" >> $REPORT
+      #       echo "" >> $REPORT
+            
+      #       # Iterar por cada test case
+      #       TESTCOUNT=$(xmllint --xpath "count(/testsuite/testcase)" "$FILE" 2>/dev/null)
+            
+      #       for (( i=1; i<=$TESTCOUNT; i++ ))
+      #       do
+      #         NAME=$(xmllint --xpath "string(/testsuite/testcase[$i]/@name)" "$FILE")
+              
+      #         # Detectar fallo
+      #         FAILMSG=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure/@message)" "$FILE" 2>/dev/null || true)
+      #         FAILTEXT=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure)" "$FILE" 2>/dev/null || true)
+              
+      #         echo "- **Test:** \`$NAME\`" >> $REPORT
+              
+      #         if [[ -n "$FAILMSG" ]]; then
+      #           echo "  - Estado: **Falló**" >> $REPORT
+      #           echo "  - Mensaje: $FAILMSG" >> $REPORT
+      #           echo "  - Stacktrace:" >> $REPORT
+      #           echo '```' >> $REPORT
+      #           echo "$FAILTEXT" >> $REPORT
+      #           echo '```' >> $REPORT
+      #         else
+      #           echo "  - Estado: **OK**" >> $REPORT
+      #         fi
+              
+      #         echo "" >> $REPORT
+      #       done
+            
+      #       echo "" >> $REPORT
+      #     done
+  
+      # - name: Generate PDF from Markdown
+      #   if: always()
+      #   run: |
+      #     pandoc tests-report.md -o tests-report.pdf --pdf-engine=pdflatex
+  
+      # - name: Upload PDF as artifact
+      #   if: always()
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: tests-report-pdf
+      #     path: tests-report.pdf
+
 jobs:
-  test-calculadora:
+  build-test-quality:
     runs-on: ubuntu-latest
+
+    env:
+      JAVA_VERSION: '21'
+
     steps:
+      # 1. Traer código
       - name: Checkout
         uses: actions/checkout@v4
-  
-      - name: Java Configuration
+
+      # 2. Instalar Java (con caché de Maven)
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '21'
-  
-      - name: Tests Execution
-        run: mvn -B test
-        
-      - name: Installing pandoc and LaTex
-        if: always()
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libxml2-utils pandoc texlive-latex-base texlive-latex-recommended texlive-latex-extra
+          java-version: ${{ env.JAVA_VERSION }}
+          cache: 'maven'
 
-      - name: Write reports
-        if: always()
+      # 3. Compilar (sin tests, opcional)
+      - name: Maven build (sin tests)
+        run: mvn -B -DskipTests package
+
+      # 4. Correr tests con coverage
+      - name: Run tests
+        id: tests
+        run: mvn -B test jacoco:report
+
+      # 5. Chequeo de calidad con Checkstyle
+      - name: Checkstyle (calidad básica)
+        id: checkstyle
+        run: mvn -B checkstyle:check
+        continue-on-error: true  # opcional: no tirar abajo el job todavía
+
+      # 6. Chequeo de emojis en el código
+      - name: Verificar que no haya emojis en el código
+        id: emoji_check
         run: |
-          REPORT="tests-report.md"
-          echo "# Informe detallado de tests" > $REPORT
-          echo "" >> $REPORT
-          echo "- Estado general del job: **${{ job.status }}**" >> $REPORT
-          echo "- Fecha: $(date)" >> $REPORT
-          echo "" >> $REPORT
-          
-          echo "## Resultados por test" >> $REPORT
-          echo "" >> $REPORT
-          
-          for FILE in target/surefire-reports/*.xml; do
-            echo "Procesando $FILE ..."
-            CLASSNAME=$(xmllint --xpath "string(/testsuite/@name)" "$FILE" 2>/dev/null)
-            
-            echo "### Clase: \`$CLASSNAME\`" >> $REPORT
-            echo "" >> $REPORT
-            
-            # Iterar por cada test case
-            TESTCOUNT=$(xmllint --xpath "count(/testsuite/testcase)" "$FILE" 2>/dev/null)
-            
-            for (( i=1; i<=$TESTCOUNT; i++ ))
-            do
-              NAME=$(xmllint --xpath "string(/testsuite/testcase[$i]/@name)" "$FILE")
-              
-              # Detectar fallo
-              FAILMSG=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure/@message)" "$FILE" 2>/dev/null || true)
-              FAILTEXT=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure)" "$FILE" 2>/dev/null || true)
-              
-              echo "- **Test:** \`$NAME\`" >> $REPORT
-              
-              if [[ -n "$FAILMSG" ]]; then
-                echo "  - Estado: **Falló**" >> $REPORT
-                echo "  - Mensaje: $FAILMSG" >> $REPORT
-                echo "  - Stacktrace:" >> $REPORT
-                echo '```' >> $REPORT
-                echo "$FAILTEXT" >> $REPORT
-                echo '```' >> $REPORT
-              else
-                echo "  - Estado: **OK**" >> $REPORT
-              fi
-              
-              echo "" >> $REPORT
-            done
-            
-            echo "" >> $REPORT
-          done
-  
-      - name: Generate PDF from Markdown
-        if: always()
-        run: |
-          pandoc tests-report.md -o tests-report.pdf --pdf-engine=pdflatex
-  
-      - name: Upload PDF as artifact
+          echo "Buscando emojis en src/ ..."
+          if grep -RIPn '[\x{1F300}-\x{1FAFF}]' src; then
+            echo "❌ Se encontraron emojis en el código (ver líneas arriba)."
+            exit 1
+          else
+            echo "✅ No se encontraron emojis en el código."
+          fi
+
+      # 7. Subir reportes "lindos" como artifacts (para descargar)
+      - name: Upload test reports (Surefire, JaCoCo, Checkstyle)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: tests-report-pdf
-          path: tests-report.pdf
+          name: reports
+          path: |
+            target/surefire-reports
+            target/site/jacoco
+            target/checkstyle-report.xml
+          if-no-files-found: ignore
+
+      # 8. Generar un reporte en Markdown con el estado general
+      - name: Build Markdown summary
+        if: always()
+        run: |
+          REPORT="summary.md"
+
+          echo "# Resumen de la ejecución CI" > "$REPORT"
+          echo "" >> "$REPORT"
+          echo "- Commit: \`${{ github.sha }}\`" >> "$REPORT"
+          echo "- Autor: \`${{ github.actor }}\`" >> "$REPORT"
+          echo "- Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> "$REPORT"
+          echo "" >> "$REPORT"
+
+          echo "## Estado de cada etapa" >> "$REPORT"
+          echo "" >> "$REPORT"
+          echo "- Tests (mvn test): **${{ steps.tests.outcome }}**" >> "$REPORT"
+          echo "- Checkstyle: **${{ steps.checkstyle.outcome }}**" >> "$REPORT"
+          echo "- Emoji check: **${{ steps.emoji_check.outcome }}**" >> "$REPORT"
+          echo "" >> "$REPORT"
+
+          echo "## Cómo leer los reportes" >> "$REPORT"
+          echo "" >> "$REPORT"
+          echo "- Reportes de tests (JUnit): en \`reports/target/surefire-reports\` (artifact descargable)." >> "$REPORT"
+          echo "- Cobertura JaCoCo (HTML): en \`reports/target/site/jacoco/index.html\`." >> "$REPORT"
+          echo "- Checkstyle: \`reports/target/checkstyle-report.xml\`." >> "$REPORT"
+          echo "" >> "$REPORT"
+          echo "> Podés descargar todos estos archivos desde la sección **Artifacts** de este run de Actions." >> "$REPORT"
+
+      # 9. (Opcional) Convertir el summary a PDF simple
+      - name: Convert Markdown summary to PDF
+        if: always()
+        uses: baileyjm02/markdown-to-pdf@v1
+        with:
+          input_path: summary.md
+          output_dir: .
+          build_html: false
+
+      - name: Upload PDF summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: summary-pdf
+          path: summary.pdf
+          if-no-files-found: ignore
+  
