@@ -25,25 +25,58 @@ jobs:
       - name: Write reports
         if: always()
         run: |
-          echo "# Informe de tests - Calculadora" > tests-report.md
-          echo "" >> tests-report.md
-          echo "- Estado general del job: **${{ job.status }}**" >> tests-report.md
-          echo "- Fecha de ejecución: $(date)" >> tests-report.md
-          echo "" >> tests-report.md
-  
-          if [ "${{ job.status }}" = "success" ]; then
-            echo "Todos los tests pasaron correctamente." >> tests-report.md
-          else
-            echo "Algunos tests fallaron. Revisá tu implementación." >> tests-report.md
-            echo "" >> tests-report.md
-            echo "> Tip: mirá los logs completos en la sección *Actions* de GitHub." >> tests-report.md
-          fi
+          REPORT="tests-report.md"
+          echo "# Informe detallado de tests" > $REPORT
+          echo "" >> $REPORT
+          echo "- Estado general del job: **${{ job.status }}**" >> $REPORT
+          echo "- Fecha: $(date)" >> $REPORT
+          echo "" >> $REPORT
+          
+          echo "## Resultados por test" >> $REPORT
+          echo "" >> $REPORT
+          
+          for FILE in target/surefire-reports/*.xml; do
+            echo "Procesando $FILE ..."
+            CLASSNAME=$(xmllint --xpath "string(/testsuite/@name)" "$FILE" 2>/dev/null)
+            
+            echo "### Clase: \`$CLASSNAME\`" >> $REPORT
+            echo "" >> $REPORT
+            
+            # Iterar por cada test case
+            TESTCOUNT=$(xmllint --xpath "count(/testsuite/testcase)" "$FILE" 2>/dev/null)
+            
+            for (( i=1; i<=$TESTCOUNT; i++ ))
+            do
+              NAME=$(xmllint --xpath "string(/testsuite/testcase[$i]/@name)" "$FILE")
+              
+              # Detectar fallo
+              FAILMSG=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure/@message)" "$FILE" 2>/dev/null || true)
+              FAILTEXT=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure)" "$FILE" 2>/dev/null || true)
+              
+              echo "- **Test:** \`$NAME\`" >> $REPORT
+              
+              if [[ -n "$FAILMSG" ]]; then
+                echo "  - Estado: **Falló**" >> $REPORT
+                echo "  - Mensaje: $FAILMSG" >> $REPORT
+                echo "  - Stacktrace:" >> $REPORT
+                echo '```' >> $REPORT
+                echo "$FAILTEXT" >> $REPORT
+                echo '```' >> $REPORT
+              else
+                echo "  - Estado: **OK**" >> $REPORT
+              fi
+              
+              echo "" >> $REPORT
+            done
+            
+            echo "" >> $REPORT
+          done
   
       - name: Installing pandoc and LaTex
         if: always()
         run: |
           sudo apt-get update
-          sudo apt-get install -y pandoc texlive-latex-base texlive-latex-recommended texlive-latex-extra
+          sudo apt-get install -y libxml2-utils pandoc texlive-latex-base texlive-latex-recommended texlive-latex-extra
   
       - name: Generate PDF from Markdown
         if: always()
