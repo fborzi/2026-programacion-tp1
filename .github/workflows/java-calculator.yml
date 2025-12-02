@@ -1,0 +1,58 @@
+name: Test Calculadora
+
+on:
+  push:
+    branches: [ main, master, feature/* ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test-calculadora:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+  
+      - name: Java Configuration
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+  
+      - name: Tests Execution
+        run: mvn -B test
+  
+      - name: Write reports
+        if: always()
+        run: |
+          echo "# Informe de tests - Calculadora" > tests-report.md
+          echo "" >> tests-report.md
+          echo "- Estado general del job: **${{ job.status }}**" >> tests-report.md
+          echo "- Fecha de ejecución: $(date)" >> tests-report.md
+          echo "" >> tests-report.md
+  
+          if [ "${{ job.status }}" = "success" ]; then
+            echo "Todos los tests pasaron correctamente." >> tests-report.md
+          else
+            echo "Algunos tests fallaron. Revisá tu implementación." >> tests-report.md
+            echo "" >> tests-report.md
+            echo "> Tip: mirá los logs completos en la sección *Actions* de GitHub." >> tests-report.md
+          fi
+  
+      - name: Installing pandoc and LaTex
+        if: always()
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-latex-base texlive-latex-recommended texlive-latex-extra
+  
+      - name: Generate PDF from Markdown
+        if: always()
+        run: |
+          pandoc tests-report.md -o tests-report.pdf --pdf-engine=pdflatex
+  
+      - name: Upload PDF as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests-report-pdf
+          path: tests-report.pdf
