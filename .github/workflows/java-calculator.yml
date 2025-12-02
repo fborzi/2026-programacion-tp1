@@ -21,7 +21,13 @@ jobs:
   
       - name: Tests Execution
         run: mvn -B test
-  
+        
+      - name: Installing pandoc and LaTex
+        if: always()
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxml2-utils pandoc texlive-latex-base texlive-latex-recommended texlive-latex-extra
+
       - name: Write reports
         if: always()
         run: |
@@ -71,12 +77,6 @@ jobs:
             
             echo "" >> $REPORT
           done
-  
-      - name: Installing pandoc and LaTex
-        if: always()
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libxml2-utils pandoc texlive-latex-base texlive-latex-recommended texlive-latex-extra
   
       - name: Generate PDF from Markdown
         if: always()
