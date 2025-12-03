@@ -34,12 +34,6 @@ jobs:
       - name: Maven build
         run: mvn -B -DskipTests package
 
-      # 4. Correr tests con coverage
-      - name: Run tests
-        id: tests
-        run: mvn -B test jacoco:report
-        #continue-on-error: true
-
       # 5. Chequeo de calidad con Checkstyle
       - name: Checkstyle
         id: checkstyle
@@ -57,7 +51,12 @@ jobs:
           else
             echo "No se encontraron emojis en el código."
           fi
-
+      # 4. Correr tests con coverage
+      - name: Run tests
+        id: tests
+        run: mvn -B test jacoco:report
+        #continue-on-error: true
+        
       # 7. Subir reportes "lindos" como artifacts (para descargar)
       - name: Upload test reports (Surefire, JaCoCo, Checkstyle)
         if: always()
