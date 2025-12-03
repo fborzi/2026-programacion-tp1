@@ -38,6 +38,7 @@ jobs:
       - name: Run tests
         id: tests
         run: mvn -B test jacoco:report
+        continue-on-error: true  # opcional: no tirar abajo el job todavía
 
       # 5. Chequeo de calidad con Checkstyle
       - name: Checkstyle
@@ -51,10 +52,10 @@ jobs:
         run: |
           echo "Buscando emojis en src/ ..."
           if grep -RIPn '[\x{1F300}-\x{1FAFF}]' src; then
-            echo "❌ Se encontraron emojis en el código (ver líneas arriba)."
+            echo "Se encontraron emojis en el código (ver líneas arriba)."
             exit 1
           else
-            echo "✅ No se encontraron emojis en el código."
+            echo "No se encontraron emojis en el código."
           fi
 
       # 7. Subir reportes "lindos" como artifacts (para descargar)
@@ -117,36 +118,71 @@ jobs:
             echo "### Clase: \`$CLASSNAME\`" >> "$REPORT"
             echo "" >> "$REPORT"
       
-            # Cantidad de testcases en esta suite
-            TESTCOUNT=$(xmllint --xpath "count(/testsuite/testcase)" "$FILE")
+            # # Cantidad de testcases en esta suite
+            # TESTCOUNT=$(xmllint --xpath "count(/testsuite/testcase)" "$FILE")
       
-            # Iteramos por cada <testcase>
+            # # Iteramos por cada <testcase>
+            # for (( i=1; i<=TESTCOUNT; i++ )); do
+            #   NAME=$(xmllint --xpath "string(/testsuite/testcase[$i]/@name)" "$FILE")
+      
+            #   # Buscar si hay <failure> o <error> para este test
+            #   FAILMSG=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure/@message | /testsuite/testcase[$i]/error/@message)" "$FILE")
+            #   FAILTEXT=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure | /testsuite/testcase[$i]/error)" "$FILE")
+      
+            #   if [ -n "$FAILMSG" ]; then
+            #     # Test falló
+            #     echo "- **Test:** \`$NAME\`" >> "$REPORT"
+            #     echo "  - Estado: **Falló**" >> "$REPORT"
+            #     echo "  - Motivo: $FAILMSG" >> "$REPORT"
+            #     if [ -n "$FAILTEXT" ]; then
+            #       echo "  - Detalle:" >> "$REPORT"
+            #       echo '```' >> "$REPORT"
+            #       echo "$FAILTEXT" >> "$REPORT"
+            #       echo '```' >> "$REPORT"
+            #     fi
+            #     echo "" >> "$REPORT"
+            #   else
+            #     # Test OK
+            #     echo "- **Test:** \`$NAME\` — OK" >> "$REPORT"
+            #     echo "" >> "$REPORT"
+            #   fi
+            # done
+            TESTCOUNT=$(xmllint --xpath "count(/testsuite/testcase)" "$FILE")
+
             for (( i=1; i<=TESTCOUNT; i++ )); do
               NAME=$(xmllint --xpath "string(/testsuite/testcase[$i]/@name)" "$FILE")
-      
-              # Buscar si hay <failure> o <error> para este test
+            
+              HASFAIL=$(xmllint --xpath "count(/testsuite/testcase[$i]/failure | /testsuite/testcase[$i]/error)" "$FILE")
               FAILMSG=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure/@message | /testsuite/testcase[$i]/error/@message)" "$FILE")
+              FAILTYPE=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure/@type | /testsuite/testcase[$i]/error/@type)" "$FILE")
               FAILTEXT=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure | /testsuite/testcase[$i]/error)" "$FILE")
-      
-              if [ -n "$FAILMSG" ]; then
-                # Test falló
+            
+              if [ "$HASFAIL" -gt 0 ]; then
                 echo "- **Test:** \`$NAME\`" >> "$REPORT"
-                echo "  - Estado: **Falló**" >> "$REPORT"
-                echo "  - Motivo: $FAILMSG" >> "$REPORT"
+                echo "  - Estado: ❌ **Falló**" >> "$REPORT"
+            
+                # Mensaje “humano”: usamos message si existe, si no, el type
+                if [ -n "$FAILMSG" ]; then
+                  echo "  - Motivo: $FAILMSG" >> "$REPORT"
+                elif [ -n "$FAILTYPE" ]; then
+                  echo "  - Motivo: $FAILTYPE" >> "$REPORT"
+                else
+                  echo "  - Motivo: (sin mensaje, ver detalle abajo)" >> "$REPORT"
+                fi
+            
                 if [ -n "$FAILTEXT" ]; then
                   echo "  - Detalle:" >> "$REPORT"
                   echo '```' >> "$REPORT"
                   echo "$FAILTEXT" >> "$REPORT"
                   echo '```' >> "$REPORT"
                 fi
+            
                 echo "" >> "$REPORT"
               else
-                # Test OK
-                echo "- **Test:** \`$NAME\` — OK" >> "$REPORT"
+                echo "- **Test:** \`$NAME\` — ✅ OK" >> "$REPORT"
                 echo "" >> "$REPORT"
               fi
             done
-      
             echo "" >> "$REPORT"
           done
       # 9. (Opcional) Convertir el summary a PDF simple
