@@ -117,36 +117,6 @@ jobs:
       
             echo "### Clase: \`$CLASSNAME\`" >> "$REPORT"
             echo "" >> "$REPORT"
-      
-            # # Cantidad de testcases en esta suite
-            # TESTCOUNT=$(xmllint --xpath "count(/testsuite/testcase)" "$FILE")
-      
-            # # Iteramos por cada <testcase>
-            # for (( i=1; i<=TESTCOUNT; i++ )); do
-            #   NAME=$(xmllint --xpath "string(/testsuite/testcase[$i]/@name)" "$FILE")
-      
-            #   # Buscar si hay <failure> o <error> para este test
-            #   FAILMSG=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure/@message | /testsuite/testcase[$i]/error/@message)" "$FILE")
-            #   FAILTEXT=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure | /testsuite/testcase[$i]/error)" "$FILE")
-      
-            #   if [ -n "$FAILMSG" ]; then
-            #     # Test falló
-            #     echo "- **Test:** \`$NAME\`" >> "$REPORT"
-            #     echo "  - Estado: **Falló**" >> "$REPORT"
-            #     echo "  - Motivo: $FAILMSG" >> "$REPORT"
-            #     if [ -n "$FAILTEXT" ]; then
-            #       echo "  - Detalle:" >> "$REPORT"
-            #       echo '```' >> "$REPORT"
-            #       echo "$FAILTEXT" >> "$REPORT"
-            #       echo '```' >> "$REPORT"
-            #     fi
-            #     echo "" >> "$REPORT"
-            #   else
-            #     # Test OK
-            #     echo "- **Test:** \`$NAME\` — OK" >> "$REPORT"
-            #     echo "" >> "$REPORT"
-            #   fi
-            # done
             TESTCOUNT=$(xmllint --xpath "count(/testsuite/testcase)" "$FILE")
 
             for (( i=1; i<=TESTCOUNT; i++ )); do
@@ -159,7 +129,7 @@ jobs:
             
               if [ "$HASFAIL" -gt 0 ]; then
                 echo "- **Test:** \`$NAME\`" >> "$REPORT"
-                echo "  - Estado: ❌ **Falló**" >> "$REPORT"
+                echo "  - Estado: **Falló**" >> "$REPORT"
             
                 # Mensaje “humano”: usamos message si existe, si no, el type
                 if [ -n "$FAILMSG" ]; then
@@ -179,12 +149,65 @@ jobs:
             
                 echo "" >> "$REPORT"
               else
-                echo "- **Test:** \`$NAME\` — ✅ OK" >> "$REPORT"
+                echo "- **Test:** \`$NAME\` — OK" >> "$REPORT"
                 echo "" >> "$REPORT"
               fi
             done
             echo "" >> "$REPORT"
           done
+
+      - name: Append Checkstyle details to summary
+        if: always()
+        run: |
+          REPORT="summary.md"
+          FILE="target/checkstyle-report.xml"
+      
+          echo "" >> "$REPORT"
+          echo "## Detalle de Checkstyle" >> "$REPORT"
+          echo "" >> "$REPORT"
+      
+          # Si no existe el XML, dejamos un mensaje amable y salimos
+          if [ ! -f "$FILE" ]; then
+            echo "_No se encontró $FILE. ¿Se ejecutó \`mvn checkstyle:check\`?_" >> "$REPORT"
+            exit 0
+          fi
+      
+          # Cuántos archivos con issues hay
+          FILECOUNT=$(xmllint --xpath "count(/checkstyle/file)" "$FILE")
+      
+          if [ "$FILECOUNT" -eq 0 ]; then
+            echo "✅ Checkstyle no reportó errores." >> "$REPORT"
+            exit 0
+          fi
+      
+          for (( i=1; i<=FILECOUNT; i++ )); do
+            FNAME=$(xmllint --xpath "string(/checkstyle/file[$i]/@name)" "$FILE")
+            ERRCOUNT=$(xmllint --xpath "count(/checkstyle/file[$i]/error)" "$FILE")
+      
+            # Si ese archivo no tiene errores, lo saltamos
+            if [ "$ERRCOUNT" -eq 0 ]; then
+              continue
+            fi
+      
+            echo "### Archivo: \`$FNAME\`" >> "$REPORT"
+            echo "" >> "$REPORT"
+      
+            for (( j=1; j<=ERRCOUNT; j++ )); do
+              LINE=$(xmllint  --xpath "string(/checkstyle/file[$i]/error[$j]/@line)"     "$FILE")
+              COL=$(xmllint   --xpath "string(/checkstyle/file[$i]/error[$j]/@column)"   "$FILE")
+              SEV=$(xmllint   --xpath "string(/checkstyle/file[$i]/error[$j]/@severity)" "$FILE")
+              MSG=$(xmllint   --xpath "string(/checkstyle/file[$i]/error[$j]/@message)"  "$FILE")
+              SRC=$(xmllint   --xpath "string(/checkstyle/file[$i]/error[$j]/@source)"   "$FILE")
+      
+              echo "- Línea $LINE, col $COL — **$SEV**" >> "$REPORT"
+              echo "  - Mensaje: $MSG" >> "$REPORT"
+              echo "  - Regla: \`$SRC\`" >> "$REPORT"
+              echo "" >> "$REPORT"
+            done
+      
+            echo "" >> "$REPORT"
+          done
+    
       # 9. (Opcional) Convertir el summary a PDF simple
       - name: Convert Markdown summary to PDF
         if: always()
