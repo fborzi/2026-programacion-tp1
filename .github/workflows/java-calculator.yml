@@ -38,7 +38,7 @@ jobs:
       - name: Run tests
         id: tests
         run: mvn -B test jacoco:report
-        continue-on-error: true  # opcional: no tirar abajo el job todavía
+        #continue-on-error: true
 
       # 5. Chequeo de calidad con Checkstyle
       - name: Checkstyle
