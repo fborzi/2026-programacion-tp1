@@ -66,7 +66,7 @@ jobs:
           path: |
             target/surefire-reports
             target/site/jacoco
-            target/checkstyle-report.xml
+            target/checkstyle-result.xml
           if-no-files-found: ignore
 
       # 8. Generar un reporte en Markdown con el estado general
@@ -159,7 +159,7 @@ jobs:
         if: always()
         run: |
           REPORT="summary.md"
-          FILE="target/checkstyle-report.xml"
+          FILE="target/checkstyle-result.xml"
       
           echo "" >> "$REPORT"
           echo "## Detalle de Checkstyle" >> "$REPORT"
