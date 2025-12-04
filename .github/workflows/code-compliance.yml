@@ -1,3 +1,228 @@
+#name: Code Compliance
+#
+#on:
+#  push:
+#    branches: [ main, master, feature/* ]
+#  pull_request:
+#    branches: [ main, master ]
+#
+#jobs:
+#  build-test-quality:
+#    runs-on: ubuntu-latest
+#
+#    env:
+#      JAVA_VERSION: '21'
+#
+#    steps:
+#      # 1. Traer código
+#      - name: Checkout
+#        uses: actions/checkout@v4
+#
+#      # 2. Instalar Java (con caché de Maven)
+#      - name: Setup Java
+#        uses: actions/setup-java@v4
+#        with:
+#          distribution: 'temurin'
+#          java-version: ${{ env.JAVA_VERSION }}
+#          cache: 'maven'
+#      - name: Install XML tools
+#        run: |
+#          sudo apt-get update
+#          sudo apt-get install -y libxml2-utils
+#
+#      # 3. Compilar (sin tests, opcional)
+#      - name: Maven build
+#        run: mvn -B -DskipTests package
+#
+#      # 5. Chequeo de calidad con Checkstyle
+#      - name: Checkstyle
+#        id: checkstyle
+#        run: mvn -B checkstyle:check
+#        continue-on-error: true  # opcional: no tirar abajo el job todavía
+#
+#      # 6. Chequeo de emojis en el código
+##      - name: Verificar que no haya emojis en el código
+##        id: emoji_check
+##        run: |
+##          echo "Buscando emojis en src/ ..."
+##          if grep -RIPn '[\x{1F300}-\x{1FAFF}]' src; then
+##            echo "Se encontraron emojis en el código (ver líneas arriba)."
+##            exit 1
+##          else
+##            echo "No se encontraron emojis en el código."
+##          fi
+#      # 4. Correr tests con coverage
+#      - name: Run tests
+#        id: tests
+#        run: mvn -B test jacoco:report
+#        #continue-on-error: true
+#
+#      # 7. Subir reportes "lindos" como artifacts (para descargar)
+#      - name: Upload test reports (Surefire, JaCoCo, Checkstyle)
+#        if: always()
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: reports
+#          path: |
+#            target/surefire-reports
+#            target/checkstyle-result.xml
+#          if-no-files-found: ignore
+#
+#      # 8. Generar un reporte en Markdown con el estado general
+#      - name: Build Markdown summary
+#        if: always()
+#        run: |
+#          REPORT="summary.md"
+#
+#          echo "# Resumen de la ejecución CI" > "$REPORT"
+#          echo "" >> "$REPORT"
+#          echo "- Commit: \`${{ github.sha }}\`" >> "$REPORT"
+#          echo "- Autor: \`${{ github.actor }}\`" >> "$REPORT"
+#          echo "- Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> "$REPORT"
+#          echo "" >> "$REPORT"
+#
+#          echo "## Estado de cada etapa" >> "$REPORT"
+#          echo "" >> "$REPORT"
+#          echo "- Tests (mvn test): **${{ steps.tests.outcome }}**" >> "$REPORT"
+#          echo "- Checkstyle: **${{ steps.checkstyle.outcome }}**" >> "$REPORT"
+#          echo "" >> "$REPORT"
+#
+#          echo "## Cómo leer los reportes" >> "$REPORT"
+#          echo "" >> "$REPORT"
+#          echo "- Reportes de tests (JUnit): en \`reports/target/surefire-reports\` (artifact descargable)." >> "$REPORT"
+#          echo "- Checkstyle: \`reports/target/checkstyle-report.xml\`." >> "$REPORT"
+#          echo "" >> "$REPORT"
+#          echo "> Podés descargar todos estos archivos desde la sección **Artifacts** de este run de Actions." >> "$REPORT"
+#
+#      - name: Append tests to summary
+#        if: always()
+#        run: |
+#          REPORT="summary.md"
+#          echo "" >> "$REPORT"
+#          echo "## Detalle de tests" >> "$REPORT"
+#          echo "" >> "$REPORT"
+#          # Recorremos todos los XML de surefire
+#          for FILE in target/surefire-reports/TEST-*.xml; do
+#            echo "Procesando $FILE ..."
+#
+#            # Nombre de la clase de tests (suite)
+#            CLASSNAME=$(xmllint --xpath "string(/testsuite/@name)" "$FILE")
+#            if [ -z "$CLASSNAME" ]; then
+#              CLASSNAME="(nombre de suite no encontrado)"
+#            fi
+#
+#            echo "### Clase: \`$CLASSNAME\`" >> "$REPORT"
+#            echo "" >> "$REPORT"
+#            TESTCOUNT=$(xmllint --xpath "count(/testsuite/testcase)" "$FILE")
+#
+#            for (( i=1; i<=TESTCOUNT; i++ )); do
+#              NAME=$(xmllint --xpath "string(/testsuite/testcase[$i]/@name)" "$FILE")
+#
+#              HASFAIL=$(xmllint --xpath "count(/testsuite/testcase[$i]/failure | /testsuite/testcase[$i]/error)" "$FILE")
+#              FAILMSG=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure/@message | /testsuite/testcase[$i]/error/@message)" "$FILE")
+#              FAILTYPE=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure/@type | /testsuite/testcase[$i]/error/@type)" "$FILE")
+#              FAILTEXT=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure | /testsuite/testcase[$i]/error)" "$FILE")
+#
+#              if [ "$HASFAIL" -gt 0 ]; then
+#                echo "- **Test:** \`$NAME\`" >> "$REPORT"
+#                echo "  - Estado: **Falló**" >> "$REPORT"
+#
+#                # Mensaje “humano”: usamos message si existe, si no, el type
+#                if [ -n "$FAILMSG" ]; then
+#                  echo "  - Motivo: $FAILMSG" >> "$REPORT"
+#                elif [ -n "$FAILTYPE" ]; then
+#                  echo "  - Motivo: $FAILTYPE" >> "$REPORT"
+#                else
+#                  echo "  - Motivo: (sin mensaje, ver detalle abajo)" >> "$REPORT"
+#                fi
+#
+#                if [ -n "$FAILTEXT" ]; then
+#                  echo "  - Detalle:" >> "$REPORT"
+#                  echo '```' >> "$REPORT"
+#                  echo "$FAILTEXT" >> "$REPORT"
+#                  echo '```' >> "$REPORT"
+#                fi
+#
+#                echo "" >> "$REPORT"
+#              else
+#                echo "- **Test:** \`$NAME\` — OK" >> "$REPORT"
+#                echo "" >> "$REPORT"
+#              fi
+#            done
+#            echo "" >> "$REPORT"
+#          done
+#
+#      - name: Append Checkstyle details to summary
+#        if: always()
+#        run: |
+#          REPORT="summary.md"
+#          FILE="target/checkstyle-result.xml"
+#
+#          echo "" >> "$REPORT"
+#          echo "## Detalle de Checkstyle" >> "$REPORT"
+#          echo "" >> "$REPORT"
+#
+#          # Si no existe el XML, dejamos un mensaje amable y salimos
+#          if [ ! -f "$FILE" ]; then
+#            echo "_No se encontró $FILE. ¿Se ejecutó \`mvn checkstyle:check\`?_" >> "$REPORT"
+#            exit 0
+#          fi
+#
+#          # Cuántos archivos con issues hay
+#          FILECOUNT=$(xmllint --xpath "count(/checkstyle/file)" "$FILE")
+#
+#          if [ "$FILECOUNT" -eq 0 ]; then
+#            echo "Checkstyle no reportó errores." >> "$REPORT"
+#            exit 0
+#          fi
+#
+#          for (( i=1; i<=FILECOUNT; i++ )); do
+#            FNAME=$(xmllint --xpath "string(/checkstyle/file[$i]/@name)" "$FILE")
+#            ERRCOUNT=$(xmllint --xpath "count(/checkstyle/file[$i]/error)" "$FILE")
+#
+#            # Si ese archivo no tiene errores, lo saltamos
+#            if [ "$ERRCOUNT" -eq 0 ]; then
+#              continue
+#            fi
+#
+#            echo "### Archivo: \`$FNAME\`" >> "$REPORT"
+#            echo "" >> "$REPORT"
+#
+#            for (( j=1; j<=ERRCOUNT; j++ )); do
+#              LINE=$(xmllint  --xpath "string(/checkstyle/file[$i]/error[$j]/@line)"     "$FILE")
+#              COL=$(xmllint   --xpath "string(/checkstyle/file[$i]/error[$j]/@column)"   "$FILE")
+#              SEV=$(xmllint   --xpath "string(/checkstyle/file[$i]/error[$j]/@severity)" "$FILE")
+#              MSG=$(xmllint   --xpath "string(/checkstyle/file[$i]/error[$j]/@message)"  "$FILE")
+#              SRC=$(xmllint   --xpath "string(/checkstyle/file[$i]/error[$j]/@source)"   "$FILE")
+#
+#              echo "- Línea $LINE, col $COL — **$SEV**" >> "$REPORT"
+#              echo "  - Mensaje: $MSG" >> "$REPORT"
+#              echo "  - Regla: \`$SRC\`" >> "$REPORT"
+#              echo "" >> "$REPORT"
+#            done
+#
+#            echo "" >> "$REPORT"
+#          done
+#
+#      # 9. (Opcional) Convertir el summary a PDF simple
+#      - name: Convert Markdown summary to PDF
+#        if: always()
+#        uses: baileyjm02/markdown-to-pdf@v1
+#        with:
+#          input_path: summary.md
+#          output_dir: pdf
+#          build_html: false
+#
+#      - name: Upload PDF summary
+#        if: always()
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: summary-pdf
+#          path: pdf/summary.pdf
+#          if-no-files-found: ignore
+#
+
+
 name: Code Compliance
 
 on:
@@ -18,209 +243,130 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 2. Instalar Java (con caché de Maven)
+      # 2. Instalar Java (con caché)
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: ${{ env.JAVA_VERSION }}
           cache: 'maven'
+
+      # 3. Herramientas XML
       - name: Install XML tools
         run: |
           sudo apt-get update
           sudo apt-get install -y libxml2-utils
 
-      # 3. Compilar (sin tests, opcional)
+      # 4. Compilar sin tests
       - name: Maven build
         run: mvn -B -DskipTests package
 
-      # 5. Chequeo de calidad con Checkstyle
+      # 5. Checkstyle
       - name: Checkstyle
         id: checkstyle
         run: mvn -B checkstyle:check
-        continue-on-error: true  # opcional: no tirar abajo el job todavía
+        continue-on-error: true
 
-      # 6. Chequeo de emojis en el código
-      - name: Verificar que no haya emojis en el código
-        id: emoji_check
-        run: |
-          echo "Buscando emojis en src/ ..."
-          if grep -RIPn '[\x{1F300}-\x{1FAFF}]' src; then
-            echo "Se encontraron emojis en el código (ver líneas arriba)."
-            exit 1
-          else
-            echo "No se encontraron emojis en el código."
-          fi
-      # 4. Correr tests con coverage
+      # 6. Tests
       - name: Run tests
         id: tests
         run: mvn -B test jacoco:report
-        #continue-on-error: true
-        
-      # 7. Subir reportes "lindos" como artifacts (para descargar)
-      - name: Upload test reports (Surefire, JaCoCo, Checkstyle)
+
+      # 7. Upload reports
+      - name: Upload test reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: reports
           path: |
             target/surefire-reports
-            target/site/jacoco
             target/checkstyle-result.xml
           if-no-files-found: ignore
 
-      # 8. Generar un reporte en Markdown con el estado general
-      - name: Build Markdown summary
+      # 8. RESUMEN FINAL usando STEP SUMMARY
+      - name: Generate GitHub Summary
         if: always()
         run: |
-          REPORT="summary.md"
+          echo "# Resumen de la ejecución CI" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- Commit: \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- Autor: \`${{ github.actor }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
 
-          echo "# Resumen de la ejecución CI" > "$REPORT"
-          echo "" >> "$REPORT"
-          echo "- Commit: \`${{ github.sha }}\`" >> "$REPORT"
-          echo "- Autor: \`${{ github.actor }}\`" >> "$REPORT"
-          echo "- Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> "$REPORT"
-          echo "" >> "$REPORT"
+          echo "## Estado de cada etapa" >> $GITHUB_STEP_SUMMARY
+          echo "- Tests: **${{ steps.tests.outcome }}**" >> $GITHUB_STEP_SUMMARY
+          echo "- Checkstyle: **${{ steps.checkstyle.outcome }}**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
 
-          echo "## Estado de cada etapa" >> "$REPORT"
-          echo "" >> "$REPORT"
-          echo "- Tests (mvn test): **${{ steps.tests.outcome }}**" >> "$REPORT"
-          echo "- Checkstyle: **${{ steps.checkstyle.outcome }}**" >> "$REPORT"
-          echo "- Emoji check: **${{ steps.emoji_check.outcome }}**" >> "$REPORT"
-          echo "" >> "$REPORT"
+          echo "## Detalle de Tests" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
 
-          echo "## Cómo leer los reportes" >> "$REPORT"
-          echo "" >> "$REPORT"
-          echo "- Reportes de tests (JUnit): en \`reports/target/surefire-reports\` (artifact descargable)." >> "$REPORT"
-          echo "- Cobertura JaCoCo (HTML): en \`reports/target/site/jacoco/index.html\`." >> "$REPORT"
-          echo "- Checkstyle: \`reports/target/checkstyle-report.xml\`." >> "$REPORT"
-          echo "" >> "$REPORT"
-          echo "> Podés descargar todos estos archivos desde la sección **Artifacts** de este run de Actions." >> "$REPORT"
-      
-      - name: Append tests to summary
-        if: always()
-        run: |
-          REPORT="summary.md"
-          echo "" >> "$REPORT"
-          echo "## Detalle de tests" >> "$REPORT"
-          echo "" >> "$REPORT"
-          # Recorremos todos los XML de surefire
+          # Recorrer XML de surefire
           for FILE in target/surefire-reports/TEST-*.xml; do
-            echo "Procesando $FILE ..."
-      
-            # Nombre de la clase de tests (suite)
             CLASSNAME=$(xmllint --xpath "string(/testsuite/@name)" "$FILE")
-            if [ -z "$CLASSNAME" ]; then
-              CLASSNAME="(nombre de suite no encontrado)"
-            fi
-      
-            echo "### Clase: \`$CLASSNAME\`" >> "$REPORT"
-            echo "" >> "$REPORT"
+            echo "### Clase: \`$CLASSNAME\`" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+
             TESTCOUNT=$(xmllint --xpath "count(/testsuite/testcase)" "$FILE")
 
             for (( i=1; i<=TESTCOUNT; i++ )); do
               NAME=$(xmllint --xpath "string(/testsuite/testcase[$i]/@name)" "$FILE")
-            
-              HASFAIL=$(xmllint --xpath "count(/testsuite/testcase[$i]/failure | /testsuite/testcase[$i]/error)" "$FILE")
+              FAIL=$(xmllint --xpath "count(/testsuite/testcase[$i]/failure | /testsuite/testcase[$i]/error)" "$FILE")
               FAILMSG=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure/@message | /testsuite/testcase[$i]/error/@message)" "$FILE")
-              FAILTYPE=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure/@type | /testsuite/testcase[$i]/error/@type)" "$FILE")
-              FAILTEXT=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure | /testsuite/testcase[$i]/error)" "$FILE")
-            
-              if [ "$HASFAIL" -gt 0 ]; then
-                echo "- **Test:** \`$NAME\`" >> "$REPORT"
-                echo "  - Estado: **Falló**" >> "$REPORT"
-            
-                # Mensaje “humano”: usamos message si existe, si no, el type
-                if [ -n "$FAILMSG" ]; then
-                  echo "  - Motivo: $FAILMSG" >> "$REPORT"
-                elif [ -n "$FAILTYPE" ]; then
-                  echo "  - Motivo: $FAILTYPE" >> "$REPORT"
-                else
-                  echo "  - Motivo: (sin mensaje, ver detalle abajo)" >> "$REPORT"
-                fi
-            
-                if [ -n "$FAILTEXT" ]; then
-                  echo "  - Detalle:" >> "$REPORT"
-                  echo '```' >> "$REPORT"
-                  echo "$FAILTEXT" >> "$REPORT"
-                  echo '```' >> "$REPORT"
-                fi
-            
-                echo "" >> "$REPORT"
+              FAILDETAIL=$(xmllint --xpath "string(/testsuite/testcase[$i]/failure | /testsuite/testcase[$i]/error)" "$FILE")
+
+              if [ "$FAIL" -gt 0 ]; then
+                echo "- ❌ **$NAME**" >> $GITHUB_STEP_SUMMARY
+                echo "  - Motivo: $FAILMSG" >> $GITHUB_STEP_SUMMARY
+                echo "  - Detalle:" >> $GITHUB_STEP_SUMMARY
+                echo '```' >> $GITHUB_STEP_SUMMARY
+                echo "$FAILDETAIL" >> $GITHUB_STEP_SUMMARY
+                echo '```' >> $GITHUB_STEP_SUMMARY
               else
-                echo "- **Test:** \`$NAME\` — OK" >> "$REPORT"
-                echo "" >> "$REPORT"
+                echo "- ✅ **$NAME**" >> $GITHUB_STEP_SUMMARY
               fi
+
+              echo "" >> $GITHUB_STEP_SUMMARY
             done
-            echo "" >> "$REPORT"
           done
 
-      - name: Append Checkstyle details to summary
-        if: always()
-        run: |
-          REPORT="summary.md"
+          echo "## Detalle de Checkstyle" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
           FILE="target/checkstyle-result.xml"
-      
-          echo "" >> "$REPORT"
-          echo "## Detalle de Checkstyle" >> "$REPORT"
-          echo "" >> "$REPORT"
-      
-          # Si no existe el XML, dejamos un mensaje amable y salimos
           if [ ! -f "$FILE" ]; then
-            echo "_No se encontró $FILE. ¿Se ejecutó \`mvn checkstyle:check\`?_" >> "$REPORT"
+            echo "_No se encontró checkstyle-result.xml_" >> $GITHUB_STEP_SUMMARY
             exit 0
           fi
-      
-          # Cuántos archivos con issues hay
+
           FILECOUNT=$(xmllint --xpath "count(/checkstyle/file)" "$FILE")
-      
+
           if [ "$FILECOUNT" -eq 0 ]; then
-            echo "✅ Checkstyle no reportó errores." >> "$REPORT"
+            echo "✔ Checkstyle no reportó errores." >> $GITHUB_STEP_SUMMARY
             exit 0
           fi
-      
+
           for (( i=1; i<=FILECOUNT; i++ )); do
             FNAME=$(xmllint --xpath "string(/checkstyle/file[$i]/@name)" "$FILE")
             ERRCOUNT=$(xmllint --xpath "count(/checkstyle/file[$i]/error)" "$FILE")
-      
-            # Si ese archivo no tiene errores, lo saltamos
+
             if [ "$ERRCOUNT" -eq 0 ]; then
               continue
             fi
-      
-            echo "### Archivo: \`$FNAME\`" >> "$REPORT"
-            echo "" >> "$REPORT"
-      
+
+            echo "### Archivo: \`$FNAME\`" >> $GITHUB_STEP_SUMMARY
+
             for (( j=1; j<=ERRCOUNT; j++ )); do
               LINE=$(xmllint  --xpath "string(/checkstyle/file[$i]/error[$j]/@line)"     "$FILE")
               COL=$(xmllint   --xpath "string(/checkstyle/file[$i]/error[$j]/@column)"   "$FILE")
               SEV=$(xmllint   --xpath "string(/checkstyle/file[$i]/error[$j]/@severity)" "$FILE")
               MSG=$(xmllint   --xpath "string(/checkstyle/file[$i]/error[$j]/@message)"  "$FILE")
               SRC=$(xmllint   --xpath "string(/checkstyle/file[$i]/error[$j]/@source)"   "$FILE")
-      
-              echo "- Línea $LINE, col $COL — **$SEV**" >> "$REPORT"
-              echo "  - Mensaje: $MSG" >> "$REPORT"
-              echo "  - Regla: \`$SRC\`" >> "$REPORT"
-              echo "" >> "$REPORT"
-            done
-      
-            echo "" >> "$REPORT"
-          done
-    
-      # 9. (Opcional) Convertir el summary a PDF simple
-      - name: Convert Markdown summary to PDF
-        if: always()
-        uses: baileyjm02/markdown-to-pdf@v1
-        with:
-          input_path: summary.md
-          output_dir: pdf
-          build_html: false
 
-      - name: Upload PDF summary
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: summary-pdf
-          path: pdf/summary.pdf
-          if-no-files-found: ignore
-  
+              echo "- Línea $LINE, col $COL — **$SEV**" >> $GITHUB_STEP_SUMMARY
+              echo "  - Mensaje: $MSG" >> $GITHUB_STEP_SUMMARY
+              echo "  - Regla: \`$SRC\`" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+            done
+          done
