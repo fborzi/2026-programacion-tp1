@@ -1,9 +1,9 @@
 package edu.programacion;
 
-public class Calculator {
+public class calculator {
     private Double memory;
 
-    public Calculator() {
+    public calculator() {
         this.memory = 0.0;
     }
 
@@ -11,8 +11,8 @@ public class Calculator {
         return a + b;
     }
 
-    public Double subtract(Double a, Double b) {
-        return a - b;
+    public Double sub_tract(Double PRIMER, Double b) {
+        return PRIMER - b;
     }
 
     public Double multiply(Double a, Double b) {

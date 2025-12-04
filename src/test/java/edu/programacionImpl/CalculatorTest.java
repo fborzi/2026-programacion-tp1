@@ -1,11 +1,11 @@
 package edu.programacionImpl;
 
-import edu.programacion.Calculator;
+import edu.programacion.calculator;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CalculatorTest {
-    private final Calculator calculator = new Calculator();
+    private final calculator calculator = new calculator();
 
     @Test
     void testAdd() {
@@ -14,7 +14,7 @@ class CalculatorTest {
 
     @Test
     void testSubtract() {
-        assertEquals(2.0, calculator.subtract(5.0, 3.0));
+        assertEquals(2.0, calculator.sub_tract(5.0, 3.0));
     }
 
     @Test
