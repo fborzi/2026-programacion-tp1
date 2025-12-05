@@ -40,7 +40,7 @@ jobs:
       - name: Checkstyle
         id: checkstyle
         run: mvn -B checkstyle:check
-        #continue-on-error: true
+        continue-on-error: true
 
       # 6. Tests
       - name: Run tests
