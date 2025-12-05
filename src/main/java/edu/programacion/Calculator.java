@@ -1,9 +1,9 @@
 package edu.programacion;
 
-public class calculator {
+public class Calculator {
     private Double memory;
 
-    public calculator() {
+    public Calculator() {
         this.memory = 0.0;
     }
 
