@@ -1,3 +1,4 @@
+""""""
 cadena1 = input("Ingrese un texto: ").lower()
 cadena2 = input("Ingrese otro texto: ").lower()
 

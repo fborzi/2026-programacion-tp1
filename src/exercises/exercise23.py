@@ -1,3 +1,7 @@
+"""Escribir un programa que solicite al usuario ingresar una fecha en formato
+args: date: str - Fecha en formato dd/mm/aaaa
+
+"""
 date: str = input("Ingrese una fecha con el formato dd/mm/aaaa: ")
 
 day: str = date[0:2]
