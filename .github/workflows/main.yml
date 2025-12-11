@@ -23,4 +23,4 @@ jobs:
 
       - name: Run pylint
         run: |
-          pylint tu_paquete/  # igual que mvn checkstyle:check
+          pylint src/  # igual que mvn checkstyle:check
