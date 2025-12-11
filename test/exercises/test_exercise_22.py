@@ -5,7 +5,7 @@ import sys
 import unittest
 from unittest.mock import patch
 
-from test.utils.constant import REGEX_FOR_FLOAT_INT
+from test.utils.constant import REGEX_FOR_FLOAT_INT, REGEX_FOR_LETTERS, REGEX_FOR_STRING
 
 
 class TestExercise22(unittest.TestCase):
@@ -24,12 +24,12 @@ class TestExercise22(unittest.TestCase):
         return output.strip().splitlines()
 
     def validateRegex(self, line: str) -> None:
-        self.assertRegex(line, r"[A-Za-z]", "The print must contain a sentence explaining the result.")
+        self.assertRegex(line, REGEX_FOR_LETTERS, "The print must contain a sentence explaining the result.")
 
     def test_sum(self):
         lines = self.run_exercise(150, 10)
 
-        m = re.search(r"(?<=:)\s*([+-]?\d+(?:\.\d+)?)", lines[0])
+        m = re.search(REGEX_FOR_FLOAT_INT, lines[0])
         self.assertIsNotNone(m)
         self.assertEqual(m.group(1), "160")
         self.validateRegex(lines[0])
@@ -37,7 +37,7 @@ class TestExercise22(unittest.TestCase):
     def test_division(self):
         lines = self.run_exercise(150, 10)
 
-        m = re.search(r"(?<=:)\s*([+-]?\d+(?:\.\d+)?)", lines[1])
+        m = re.search(REGEX_FOR_FLOAT_INT, lines[1])
         self.assertIsNotNone(m)
         self.assertEqual(m.group(1), "15.0")
         self.validateRegex(lines[1])
@@ -45,7 +45,7 @@ class TestExercise22(unittest.TestCase):
     def test_division_fail(self):
         lines = self.run_exercise(150, 0)
 
-        m = re.search(r"(?<=:)\s*([+-]?\d+(?:\.\d+)?)", lines[2])
+        m = re.search(REGEX_FOR_FLOAT_INT, lines[2])
         self.assertIsNotNone(m)
         self.assertEqual(len(lines), 5, "Its not informed to the user that division by zero is not possible.")
         self.assertEqual(m.group(1), "0.0")
@@ -54,7 +54,7 @@ class TestExercise22(unittest.TestCase):
     def test_is_divisible(self):
         lines = self.run_exercise(150, 12)
 
-        m = re.search(r"(?<=:)\s*(.+)$", lines[2])
+        m = re.search(REGEX_FOR_STRING, lines[2])
         self.assertIsNotNone(m)
         self.assertIn(m.group(1), ["True", "False"])
         self.validateRegex(lines[2])
@@ -62,7 +62,7 @@ class TestExercise22(unittest.TestCase):
     def test_is_divisible_fail(self):
         lines = self.run_exercise(150, 0)
 
-        m = re.search(r"(?<=:)\s*(.+)$", lines[3])
+        m = re.search(REGEX_FOR_STRING, lines[3])
         self.assertIsNotNone(m)
         self.assertEqual(len(lines), 5, "Its not informed to the user that division by zero is not possible.")
         self.assertEqual(m.group(1), "False")
