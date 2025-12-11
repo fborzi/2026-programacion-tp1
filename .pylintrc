@@ -1,25 +1,17 @@
 [MAIN]
-# Activamos extensiones opcionales:
-# - docparams: verifica que los docstrings documenten parámetros, tipos, returns, etc.
-# - docstyle : chequea formato básico de docstrings (comillas, primera línea, etc.)
-# - typing   : chequeos adicionales relacionados con type hints
-load-plugins=pylint.extensions.docparams,pylint.extensions.docstyle,pylint.extensions.typing
+# Activamos el checker de documentación de parámetros
+load-plugins = pylint.extensions.docparams
 
-# Ruta donde buscar el código (ajustá si usás src/)
-init-hook='import sys, os; sys.path.append(os.getcwd())'
-
+# No aceptar funciones sin documentación de parámetros / retorno
+accept-no-param-doc = no
+accept-no-return-doc = no
+# Estos dos los dejamos tolerantes, si querés después los ponemos en "no"
+accept-no-raise-doc = yes
+accept-no-yields-doc = yes
 
 [MESSAGES CONTROL]
-# No deshabilitamos los "missing-docstring" para que sean OBLIGATORIOS
-# C0114: missing-module-docstring
-# C0115: missing-class-docstring
-# C0116: missing-function-docstring
-# Dejamos estos activos.
-#
-# Acá sólo deshabilito algunas cosas ruidosas de estilo que no son críticas,
-# ajustá a gusto.
-disable=
-    invalid-name,          # nombres no-PEP8 (por si usás nombres cortos en ejemplos)
+# NO deshabilitamos missing-*docstring -> obligatorios
+disable =
     too-few-public-methods,
     too-many-arguments,
     too-many-locals,
@@ -27,56 +19,24 @@ disable=
     too-many-instance-attributes,
     too-many-statements
 
+[FORMAT]
+max-line-length = 120
+indent-string = '    '
 
 [BASIC]
-# Forzar docstrings en casi todo, incluido __init__.
-# Por defecto Pylint suele ignorar privados/mágicos, esto lo relaja sólo un poco:
-no-docstring-rgx=^$   # "no hay nada que se salve": todo debe tener docstring
-
-# Longitud mínima de un docstring; si quieres algo más estricto subí el número
-docstring-min-length=10
-
-
-[FORMAT]
-max-line-length=120
-indent-string='    '
-
-
-[REPORTS]
-# Nada de reportes largos, sólo score + mensajes
-reports=no
-
-
-[TYPECHECK]
-# En proyectos con muchos tipos, conviene que Pylint sea estricto con imports de typing
-ignored-modules=
-ignored-classes=
-
-
-[parameter_documentation]
-# Esta sección es del plugin docparams.
-# Indicamos el estilo de docstring que vas a usar.
-# Elegí uno (google, sphinx o numpy). Aquí uso Google style.
-docstring_style=google
-
-# Queremos que la documentación de parámetros y tipos sea OBLIGATORIA:
-accept-no-param-doc=no         # Si hay parámetros, deben aparecer en el docstring
-accept-no-type-doc=no          # Y sus tipos deben estar documentados
-accept-no-return-doc=no        # Debe documentarse qué devuelve
-accept-no-return-type-doc=no   # …y el tipo devuelto
-accept-no-raise-doc=yes        # No obligamos a documentar todas las excepciones (puedes poner no si querés full nazi)
-
+# Todo debe tener docstring (módulos, clases, funciones)
+# (este regex dice “no hay ninguna excepción”)
+no-docstring-rgx = ^$
 
 [DESIGN]
-max-args=10
-max-branches=12
-max-locals=25
-max-returns=6
-max-statements=50
-
+max-args = 10
+max-branches = 12
+max-locals = 25
+max-returns = 6
+max-statements = 50
 
 [SIMILARITIES]
-min-similarity-lines=10
-ignore-comments=yes
-ignore-docstrings=yes
-ignore-imports=yes
+min-similarity-lines = 10
+ignore-comments = yes
+ignore-docstrings = yes
+ignore-imports = yes
