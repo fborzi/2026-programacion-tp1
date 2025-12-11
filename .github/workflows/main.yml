@@ -1,0 +1,26 @@
+name: Python Code Compliance
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install linters
+        run: |
+          pip install pylint
+
+      - name: Run pylint
+        run: |
+          pylint tu_paquete/  # igual que mvn checkstyle:check
