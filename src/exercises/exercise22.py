@@ -9,7 +9,7 @@ porcentaje: int = 0
 
 if num_2 != 0:
     division = num_1 / num_2
-    es_divisor = (num_1 % num_2 == 0)
+    es_divisor = num_1 % num_2 == 0
     porcentaje = (num_2 * num_1) // 100
 else:
     print("No se puede dividir por cero.")
