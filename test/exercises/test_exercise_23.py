@@ -34,5 +34,13 @@ class TestExercise23(unittest.TestCase):
         self.assertEqual(m.group(1), "94-06-12")
         self.validateRegex(lines[0])
 
+    def test_date_output_2(self):
+        lines = self.run_exercise("12/07/1994")
+
+        m = re.search(REGEX_FOR_STRING, lines[0])
+        self.assertIsNotNone(m)
+        self.assertEqual(m.group(1), "94-06-12")
+        self.validateRegex(lines[0])
+
 if __name__ == '__main__':
     unittest.main()
