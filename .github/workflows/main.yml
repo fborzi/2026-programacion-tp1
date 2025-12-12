@@ -17,10 +17,14 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install linters
+      - name: Install dependencies
         run: |
-          pip install pylint
+          pip install pylint pytest
+          
+      - name: Run tests
+        run: |
+          pytest -v src/test/
 
       - name: Run pylint
         run: |
-          pylint src/  # igual que mvn checkstyle:check
+          pylint src/
