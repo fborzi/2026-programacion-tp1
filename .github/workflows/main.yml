@@ -23,7 +23,7 @@ jobs:
           
       - name: Run tests
         run: |
-          pytest -v src/test/
+          pytest -v test/
 
       - name: Run pylint
         run: |
