@@ -8,7 +8,7 @@ from unittest.mock import patch
 from test.utils.constant import REGEX_FOR_LETTERS, REGEX_FOR_STRING
 
 
-class TestExercise22(unittest.TestCase):
+class TestExercise23(unittest.TestCase):
     MODULE_NAME = "src.exercises.exercise23"
 
     def run_exercise(self, *inputs: str) -> list[str]:
