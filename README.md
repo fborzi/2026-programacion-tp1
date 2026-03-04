@@ -4,7 +4,7 @@ finalidad de poner en práctica la teoria vista en clase.
 
 ---
 
-## <i>Trabajo Práctico 1 - bis</i>
+## <i>Trabajo Práctico 1</i>
 
 Teniendo en cuenta la resolución del TP1 y la teoría vista 
 en clase se propone resolver estos ejercicios adicionales 
@@ -59,7 +59,7 @@ Al finalizar la resolución de cada ejercicio, se deberá:
 4. Estos pasos se deberán seguir para cada ejercicio resuelto.
 
 ### Formato de entrega:
-Para cumplir con la entrega del TP1-bis, se deberá:
+Para cumplir con la entrega del TP1, se deberá:
 - Finalizar la resolución de todos los ejercicios propuestos.
 - Asegurarse de que todos los cambios estén subidos a la rama feature en GitHub.
 - Verificar que el código pase correctamente las evaluaciones hechas en GitHub Actions.
