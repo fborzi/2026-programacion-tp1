@@ -8,8 +8,8 @@ from unittest.mock import patch
 from test.utils.constant import REGEX_FOR_LETTERS, REGEX_FOR_INT_ONLY, REGEX_FOR_STRING, REGEX_FOR_INT_WITHOUT_COLON
 
 
-class TestExercise21(unittest.TestCase):
-    MODULE_NAME = "src.ejercicios.ejercicio21"
+class TestExercise102(unittest.TestCase):
+    MODULE_NAME = "src.ejercicios.ejercicio1102"
 
     def run_exercise(self, *inputs: str) -> list[str]:
         """Ejecuta el ejercicio con un input dado y devuelve las líneas impresas."""
