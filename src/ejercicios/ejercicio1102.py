@@ -11,29 +11,27 @@ comparar las letras sin importar mayúsculas o minúsculas.
 Cada vez que encontraba coincidencias aumentaba el contador."""
 
 
-cadena1 = input("ingrese la primera cadena:")
-cadena2 = input("ingrese la segunda cadena:")
+cadena1 = input("ingrese la primera cadena: ")
+cadena2 = input("ingrese la segunda cadena: ")
 
-contador = 0
+contador_cadena = 0
 cantidad = cadena1.find(cadena2)
 
 while cantidad != -1:
-    contador += 1
+    contador_cadena += 1
     cantidad = cadena1.find(cadena2, cantidad + 1)
+print("Cantidad de veces que aparece:", contador_cadena)
 
-print("Cantidad de veces que aparece:", contador)
 
-
-cadenaNueva = cadena1.lower() + cadena2.lower()
-print("Concatenación:", cadenaNueva)
+cadena_nueva = cadena1.lower() + cadena2.lower()
+print("Concatenación:", cadena_nueva)
 
 
 primera_letra = cadena1[0]
-contador = 0
+contador_letras = 0
 
-for x in cadena2:
-    if x.lower() == primera_letra.lower(): 
-        contador += 1   
+for letra in cadena2:
+    if letra.lower() == primera_letra.lower(): 
+        contador_letras += 1   
 
-   
-print("La letra: " + primera_letra + " aparece " +  str(contador)  + " veces en la cadena " + cadena2)
+print("La letra: '" + primera_letra + "' aparece " +  str(contador_letras)  + " veces en la cadena '" + cadena2 + "'")
