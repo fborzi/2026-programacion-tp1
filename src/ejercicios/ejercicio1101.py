@@ -7,12 +7,11 @@ imprimiremos la cadena convertida a MAYUSCULA,
 por ultimo buscaremos y contaremos la cantidad de vocales en minuscula e imprimiremos el total
 """
 s = input("Ingrese cadena de caracteres: ")
-print("Cadena ingresada: ", s)
 print("la longitud de la cadena es: ", len(s))
 if "la" in s:
     print ("sigla ´la´ fue encontrada: Si ")
 else:  
     print("sigla ´la´ fue encontrada: No ")
-print(s.upper()) 
+print("la cadena en mayuscula es: ", s.upper()) 
 vocal_total = ( s.count("a") + s.count("e") +  s.count("i") +  s.count("o") +  s.count("u"))
 print("el total de vocales en minusculas utilizadas son:", vocal_total)
