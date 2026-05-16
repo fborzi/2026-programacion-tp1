@@ -1,9 +1,14 @@
-"""Leer desde teclado dos cadenas de caracteres y luego:
-a. Imprimir la cantidad de veces que se encuentra la segunda cadena en la primera.
-b. Generar una nueva cadena con la concatenación de ambas. La segunda cadena deberá
-comenzar con minúscula (independientemente de cómo la haya ingresado el usuario).
-c. Contar cuántas veces aparece la primera letra de la primer cadena en la segunda cadena e
-informar con el siguiente formato: "La letra '.' aparece .. veces en la cadena ' ... """
+"""a. Utilicé find() para buscar cuántas veces aparece la segunda cadena
+dentro de la primera cadena y un while para repetir la búsqueda
+hasta que no existan más coincidencias.
+
+b. Utilicé lower() para convertir las cadenas a minúsculas
+y luego concatenarlas en una nueva variable.
+
+c. Guardé la primera letra de la primera cadena en una variable,
+utilicé un for para recorrer la segunda cadena y lower() para
+comparar las letras sin importar mayúsculas o minúsculas.
+Cada vez que encontraba coincidencias aumentaba el contador."""
 
 
 cadena1 = input("ingrese la primera cadena:")
@@ -16,20 +21,19 @@ while cantidad != -1:
     contador += 1
     cantidad = cadena1.find(cadena2, cantidad + 1)
 
-print("la cantidad de veces que se encuentra la segunda cadena en la primera es:" , contador)
+print("Cantidad de veces que aparece:", contador)
 
 
-cadenaNueva = cadena1.lower() + " " + cadena2
-print(cadenaNueva)
+cadenaNueva = cadena1.lower() + cadena2.lower()
+print("Concatenación:", cadenaNueva)
 
 
 primera_letra = cadena1[0]
 contador = 0
 
 for x in cadena2:
-    if x == primera_letra: # type: ignore
+    if x.lower() == primera_letra.lower(): 
         contador += 1   
-else:
-    print("no hay coincidencias encontradas")
+
    
-print("La letra: " + primera_letra + " aparece " +  str(contador)  + " veces en la frase ingresada: " + cadena2)
+print("La letra: " + primera_letra + " aparece " +  str(contador)  + " veces en la cadena " + cadena2)
