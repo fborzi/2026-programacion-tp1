@@ -9,31 +9,18 @@ El programa:
 4) Convierte el texto a mayúsculas.
 5) Cuenta cuántas vocales minúsculas tiene.
 """
-cadena = input("Ingresá una cadena de caracteres: ")
-print(cadena)
+cadena = input()
 
-print("Cadena ingresada:")
-print(cadena)
-
-
-print("Longitud de la cadena:")
 print(len(cadena))
 
-if "la" in cadena:
-    print("La palabra 'la' existe en la cadena.")
-else:
-    print("La palabra 'la' NO existe en la cadena.")
+print("la" in cadena.lower())
 
-
-print("Cadena en mayúsculas:")
 print(cadena.upper())
-
 
 contador = 0
 
-for letra in cadena:
+for letra in cadena.lower():
     if letra in "aeiou":
         contador += 1
 
-print("Cantidad de vocales minúsculas:")
 print(contador)
