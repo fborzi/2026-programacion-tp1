@@ -15,7 +15,7 @@ print("La longitud de la cadena es", len(cadena))
 
 print("¿La cadena contiene 'la'?:", "la" in cadena.lower())
 
-print("La cadena en mayúsculas es", cadena.upper())
+print("La cadena en mayúsculas es:", cadena.upper())
 
 contador = 0
 
