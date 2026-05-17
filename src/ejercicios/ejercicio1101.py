@@ -11,11 +11,11 @@ El programa:
 """
 cadena = input()
 
-print(len(cadena))
+print("La longitud de la cadena es", len(cadena))
 
-print("la" in cadena.lower())
+print("¿La cadena contiene 'la'?:", "la" in cadena.lower())
 
-print(cadena.upper())
+print("La cadena en mayúsculas es", cadena.upper())
 
 contador = 0
 
@@ -23,4 +23,4 @@ for letra in cadena.lower():
     if letra in "aeiou":
         contador += 1
 
-print(contador)
+print("La cantidad de vocales es", contador)
