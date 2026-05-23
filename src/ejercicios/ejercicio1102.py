@@ -1,0 +1,5 @@
+cadena1 = input ("ingrese primer cadena: ")
+cadena2 = input ("ingrese segunda cadena: ")
+print  ("Cantidad de veces que aparece: ", cadena1.count("hola"))
+print ("Concatenacion: ", cadena1+cadena2) 
+print ("La letra 'h' aparece: ", cadena2.count("h"), ("veces en la cadena 'hola hola y chau' "))

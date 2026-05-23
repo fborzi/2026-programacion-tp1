@@ -1,0 +1,5 @@
+cadena = input("ingrese cadena: ")
+print ("la longitud de la cadena es: ", len(cadena))
+print ("contiene 'la' :" , "la" in cadena) 
+print ("cadena en mayuscula: ", cadena.upper()) 
+print ("vocales en minuscula: ", cadena.count ("a") + cadena.count ("e") + cadena.count ("i") + cadena.count ("o") + cadena.count ("u"))
