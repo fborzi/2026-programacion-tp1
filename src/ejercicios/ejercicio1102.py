@@ -1,9 +1,10 @@
 a = input("Ingrese la primera cadena: ")
-b = input("Ingrese le segunda cadena: ")
-contador = 0
+b = input("Ingrese la segunda cadena: ")
 print(a)
 print(b)
-for a in a:
-    if b in a:
-        contador = contador + 1
-print(contador)
+contador = a.count(b)
+print("Cantidad de veces que aparece:", contador)
+c = a + b
+print("Concatenacion:", c.lower())
+clet = b.count(a[:1])
+print("La letra",a[:1],"aparece ", clet, "veces en la cadena:",b)
