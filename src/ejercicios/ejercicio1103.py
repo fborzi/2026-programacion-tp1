@@ -15,15 +15,23 @@ e. Si a es una variable que contiene uno de los números ingresados, ¿qué le f
 instrucción para que muestre el texto sin errores? print("el precio es$"+a) : deberia convertir la a en en una cadena 
 de texto utilizando str porque no se puede concatenar un int y un str, quedaria: print("el precio es$"+str(a))"""
 
+a = 0
+b = 0
+division = 0
+porcentaje = 0
+
 a = int(input("ingrese el primer número entero: "))
 b = int(input("ingrese el segundo número entero: "))
 
 print(f"La suma de {a} y {b} es: {a + b}")
 
 if b != 0:
-    print(f"La división de {a} y {b} es: {a / b}")
+    division = a / b
+    print(f"La división de {a} y {b} es: {division}")
     print(f"Es divisor: {a % b == 0}")
-else:
+else: 
     print("No se puede dividir por cero.")
 
-print(f"El {b}% de {a} es: {a * b / 100:.2f}")
+porcentaje = a * b / 100
+print(f"El {b}% de {a} es: {porcentaje:.2f}")
+
