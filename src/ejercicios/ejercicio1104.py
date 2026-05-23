@@ -6,9 +6,7 @@ Luego realice la trasformacion de ls fecha del formato original y cambie las pos
 
 
 fecha = input("ingrese fecha en formato dd/mm/aaaa: ")
-if len(fecha) != 10:
-    print("Error: el formato debe ser dd/mm/aaaa (exactamente 10 caracteres)")
-else:
+if len(fecha) == 10:
     dia = fecha[0:2]
     mes = fecha[3:5]
     anio = fecha[6:10]
@@ -17,3 +15,6 @@ else:
     print(f"El día es: {dia}")
     print(f"El mes es: {mes}")
     print(f"El año es: {anio}")
+
+else:
+     print("Error: el formato debe ser dd/mm/aaaa (exactamente 10 caracteres)")
