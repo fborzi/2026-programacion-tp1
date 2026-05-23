@@ -3,11 +3,11 @@ Este programa analiza una cadena de caracteres ingresada
 por el usuario.
 
 El programa:
-1) Muestra la cadena ingresada.
-2) Informa su longitud.
-3) Verifica si contiene la palabra "la".
-4) Convierte el texto a mayúsculas.
-5) Cuenta cuántas vocales minúsculas tiene.
+Muestra la cadena ingresada.
+Informa su longitud.
+Verifica si contiene la palabra "la".
+Convierte el texto a mayúsculas.
+Cuenta cuántas vocales minúsculas tiene.
 """
 cadena = input()
 

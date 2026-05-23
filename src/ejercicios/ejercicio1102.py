@@ -7,10 +7,10 @@ print("Ingrese la primer cadena:")
 cadena1= input()
 print("Ingrese la segunda cadena:")
 cadena2 = input ()
-cantidad = cadena1.count (cadena2)
+cantidad = cadena2.count (cadena1)
 print("La cantidad de veces que aparece:",cantidad)
 
-NuevaCadena = (cadena1 + " " + cadena2.lower())
+NuevaCadena = cadena1 + " " + cadena2[0].lower() + cadena2[1:]
 print("La nueva cadena es:", NuevaCadena) 
 
 letra = cadena1[0]
