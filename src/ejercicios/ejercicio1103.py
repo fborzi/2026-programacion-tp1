@@ -11,8 +11,8 @@ d. Utilicé una fórmula porcentual para calcular el porcentaje del segundo
 número respecto al primero y :.2f para mostrar el resultado con dos decimales. el formato de salida
 del ejercicio era un int pero nos sabia donde querias la respuesta cuando lo transformas a decimales
 
-e. Si a es una variable que contiene uno de los números ingresados, ¿qué le falta a la siguiente 
-instrucción para que muestre el texto sin errores? print("el precio es$"+a) : deberia convertir la a en en una cadena 
+e. Si a es una variable que contiene uno de los números ingresados, ¿qué le falta a la siguiente
+instrucción para que muestre el texto sin errores? print("el precio es$"+a) : deberia convertir la a en en una cadena
 de texto utilizando str porque no se puede concatenar un int y un str, quedaria: print("el precio es$"+str(a))"""
 
 a = 0
@@ -29,7 +29,7 @@ if b != 0:
     division = a / b
     print(f"La división de {a} y {b} es: {division}")
     print(f"Es divisor: {a % b == 0}")
-else: 
+else:
     print("No se puede dividir por cero.")
 
 porcentaje = a * b / 100
