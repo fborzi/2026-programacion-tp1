@@ -22,13 +22,8 @@ print(f"La suma de {a} y {b} es: {a + b}")
 
 if b != 0:
     print(f"La división de {a} y {b} es: {a / b}")
+    print(f"Es divisor: {a % b == 0}")
 else:
     print("No se puede dividir por cero.")
 
-if a != 0:
-    print(f"Es divisor: {b % a == 0}")
-else:
-    print("No se puede calcular divisibilidad con cero")
-
 print(f"El {b}% de {a} es: {a * b / 100:.2f}")
-
