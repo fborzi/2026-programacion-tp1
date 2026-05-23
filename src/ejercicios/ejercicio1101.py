@@ -8,6 +8,6 @@ u=(cadena.count('u'))
 vocalesEnCadena = a+e+i+o+u
 
 print("La longitud de la cadena es: ",len(cadena))
-print("Contiene 'la'",'la' in cadena )
+print("Contiene 'la':",'la' in cadena )     
 print("Cadena en mayusculas:",cadena.upper())
 print("Vocales en minusculas:",vocalesEnCadena)
