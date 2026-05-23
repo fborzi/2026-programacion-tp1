@@ -31,5 +31,4 @@ contador_letras = 0
 for letra in cadena2:
     if letra.lower() == primera_letra.lower(): 
         contador_letras += 1   
-
 print("La letra: '" + primera_letra + "' aparece " +  str(contador_letras)  + " veces en la cadena '" + cadena2 + "'")

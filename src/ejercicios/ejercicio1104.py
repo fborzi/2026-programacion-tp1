@@ -15,6 +15,5 @@ if len(fecha) == 10:
     print(f"El día es: {dia}")
     print(f"El mes es: {mes}")
     print(f"El año es: {anio}")
-
 else:
-     print("Error: el formato debe ser dd/mm/aaaa (exactamente 10 caracteres)")
+    print("Error: el formato debe ser dd/mm/aaaa (exactamente 10 caracteres)")

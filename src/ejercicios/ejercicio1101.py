@@ -19,11 +19,11 @@ if "la" in frase.lower():
 
 print("Cadena en mayúsculas:", frase.upper())
 
-vocales = "aeiou"
+VOCALES = "aeiou"
 contador = 0
 
-for letra in frase:
-    if letra in vocales:
+for letra in frase.lowe():
+    if letra in VOCALES:
         contador += 1
 
 print("vocales en minúsculas:", contador)

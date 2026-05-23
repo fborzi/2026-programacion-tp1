@@ -34,4 +34,3 @@ else:
 
 porcentaje = a * b / 100
 print(f"El {b}% de {a} es: {porcentaje:.2f}")
-
