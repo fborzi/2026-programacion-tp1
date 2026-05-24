@@ -18,18 +18,22 @@ print("La suma de", a, "y", b, "es:", suma)
 if b != 0:
     division = a / b
 else:
-    division = 0
-    
+    division = 0.0
+
 print("La división de", a, "y", b, "es:", division)
 
 if b != 0:
-    es_divisor = a % b == 0
+    es_divisible = a % b == 0
 else:
-    es_divisor = False
+    es_divisible = False
 
-print("Es divisor:", es_divisor)
+print("Es divisible:", es_divisible)
 
-porcentaje = (a * b) // 100
+if b != 0:
+    porcentaje = (a * b) // 100
+else:
+    porcentaje = 0
+
 print("El", b, "% de", a, "es:", porcentaje)
 
 
