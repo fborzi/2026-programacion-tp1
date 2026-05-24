@@ -15,13 +15,12 @@ b = int(input("Ingrese el segundo número: "))
 suma = a + b
 print("La suma de", a, "y", b, "es:", suma)
 
-
 if b != 0:
     division = a / b
     print("La división de", a, "y", b, "es:", division)
 else:
     print("La división de", a, "y", b, "es:", 0)
-    print("No se puede dividir por cero")
+    
 
 if b != 0:
     es_divisor = a % b == 0
