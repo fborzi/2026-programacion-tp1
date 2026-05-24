@@ -20,6 +20,7 @@ if b != 0:
     division = a / b
     print("La división de", a, "y", b, "es:", division)
 else:
+    print("La división de", a, "y", b, "es:", 0)
     print("No se puede dividir por cero")
 
 if b != 0:
