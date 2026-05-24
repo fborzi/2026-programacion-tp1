@@ -34,4 +34,3 @@ print("El", b, "% de", a, "es:", porcentaje)
 
 #print("El precio es $"+a) da error porque a es un número y no se puede concatenar directamente con texto.
 #lo que le falta es covertir el numero a cadena para que se puedan concatenar, con str().
-print("El precio es $" + str(a))
