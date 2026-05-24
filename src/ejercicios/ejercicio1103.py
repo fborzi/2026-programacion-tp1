@@ -22,6 +22,9 @@ else:
 
 print("La división de", a, "y", b, "es:", division)
 
+if b == 0:
+    print("No se puede dividir por cero")
+
 if b != 0:
     es_divisible = a % b == 0
 else:
