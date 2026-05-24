@@ -20,7 +20,7 @@ if b != 0:
     division = a / b
     print("La división de", a, "y", b, "es:", division)
 else:
-    print("La división de", a, "y", b, "es:", 0)
+    print("No se puede dividir por cero")
 
 if b != 0:
     es_divisor = a % b == 0
@@ -30,6 +30,7 @@ else:
 
 porcentaje = (a * b) // 100
 print("El", b, "% de", a, "es:", porcentaje)
+
 
 #print("El precio es $"+a) da error porque a es un número y no se puede concatenar directamente con texto.
 #lo que le falta es covertir el numero a cadena para que se puedan concatenar, con str().
