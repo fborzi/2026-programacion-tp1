@@ -12,8 +12,7 @@ Se convierte un numero en cadena."""
 a = int(input("Ingrese el primer número: "))
 b = int(input("Ingrese el segundo número: "))
 
-suma = a + b
-print("La suma de", a, "y", b, "es:", suma)
+print("La suma de", a, "y", b, "es:", a + b)
 
 if b != 0:
     division = a / b
@@ -22,15 +21,15 @@ else:
 
 print("La división de", a, "y", b, "es:", division)
 
-if b == 0:
-    print("No se puede dividir por cero")
-
 if b != 0:
     es_divisible = a % b == 0
 else:
     es_divisible = False
 
 print("Es divisible:", es_divisible)
+
+if b == 0:
+    print("No se puede dividir por cero")
 
 if b != 0:
     porcentaje = (a * b) // 100
