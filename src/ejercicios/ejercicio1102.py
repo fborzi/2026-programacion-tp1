@@ -8,8 +8,8 @@ cadena2 = input("Ingrese la segunda cadena: ")
 cantidad = cadena2.count(cadena1)
 print("La cantidad de veces que aparece:",cantidad)
 
-NuevaCadena = cadena1.lower() + cadena2.lower() 
-print("La nueva cadena es:", NuevaCadena) 
+NuevaCadena = cadena1.lower() + cadena2.lower()
+print("La nueva cadena es:", NuevaCadena)
 
 letra = cadena1[0].lower()
 cantidad_letra = cadena2.lower().count(letra)
