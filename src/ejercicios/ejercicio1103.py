@@ -26,10 +26,7 @@ if b != 0:
 else:
     es_divisible = False
 
-print("Es divisible:", es_divisible)
-
-if b == 0:
-    print("No se puede dividir por cero")
+print("Es divisor:", es_divisible)
 
 if b != 0:
     porcentaje = (a * b) // 100
