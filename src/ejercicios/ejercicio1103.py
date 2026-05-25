@@ -18,6 +18,7 @@ if b != 0:
     division = a / b
 else:
     division = 0.0
+    print("No se puede dividir por cero")
 
 print("La división de", a, "y", b, "es:", division)
 
@@ -33,7 +34,7 @@ if b != 0:
 else:
     porcentaje = 0
 
-print("El", b, "% de", a, "es:", porcentaje)
+print("El", str(b) + "% de", a, "es:", porcentaje)
 
 
 #print("El precio es $"+a) da error porque a es un número y no se puede concatenar directamente con texto.
