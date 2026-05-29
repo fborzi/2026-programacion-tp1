@@ -6,12 +6,13 @@ ingreso se encuentra 'la'. Luego se convertira la cadena completa en mayuscula. 
 vocales que tiene la cadena ingresada.
 """
 cadena = input("Ingrese cadena")
+Vocales = (cadena.count("a") + cadena.count ("e") + cadena.count("i") + cadena.count("o") + cadena.count("u"))
+
 print("Cadena ingresada: ", cadena)
 print("La longitud de la cadena es: ", len (cadena))
 if "la" in cadena: 
     print("Contiene 'la': Si")
 else :
-    print ("Contiene 'la': No") 
+    print("Contiene 'la': No") 
 print("Cadena en mayúscula: ", cadena.upper()) 
-Vocales = (cadena.count ("a") + cadena.count ("e") + cadena.count ("i") + cadena.count ("o") + cadena.count ("u"))
 print("Vocales en minúsculas: ", Vocales)
