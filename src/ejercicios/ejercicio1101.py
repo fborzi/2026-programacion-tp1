@@ -1,5 +1,4 @@
-palabra=input("Ingrese una palabra: ")
-print(palabra)
+palabra=input ()
 print("La longitud de la cadena es: ",len(palabra))
 if "la" in palabra:
     print("Contiene 'la': Si")
