@@ -9,7 +9,7 @@ Verifica si contiene la palabra "la".
 Convierte el texto a mayúsculas.
 Cuenta cuántas vocales minúsculas tiene.
 """
-cadena = input()
+cadena = input("Ingrese una cadena de texto: ")
 
 print("La longitud de la cadena es", len(cadena))
 
