@@ -6,7 +6,7 @@ Cuando se divida verificaremos si es divisor. Y por ultimo pasaremos a sacar su 
 suma = 0
 division = 0.0
 porcentaje = 0.0
-es_divisible = 0.0
+divisible = 0.0
 
 a = int(input("Ingrese el primer numero: "))
 b = int(input("Ingrese el segundo numero: "))
@@ -20,6 +20,6 @@ print("La suma de", a, "y", b, "es: ", suma)
 print("La division de", a, "y", b, "es: ", division)
 if b % a == 0:
     print("Es divisor: True")
-else: 
+else:
     print("Es divisor: False")
-print("El", str(b) + "%", "de", a, "es: ", porcentaje)
+print("El", str(b) + "%", "de", a, "es: ", porcentaje) 
