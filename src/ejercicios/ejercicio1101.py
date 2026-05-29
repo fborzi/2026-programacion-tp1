@@ -1,3 +1,5 @@
+"Este modulo resuelve el ejercicio 1101"
+
 cadena = input("ingrese una cadena de texto: ")
 
 print("la longitud de la cadena es: ", len(cadena))

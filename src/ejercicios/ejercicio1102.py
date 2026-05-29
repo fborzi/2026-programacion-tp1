@@ -1,5 +1,7 @@
-a = (input("Introduzca una cadena de caracteres: "))
-b = (input("Introduzca una nueva cadena de caracteres: "))
+"Este modulo resuelve el ejercicio 1102"
+
+a = input("Introduzca una cadena de caracteres: ")
+b = input("Introduzca una nueva cadena de caracteres: ")
 cantidaddeveces = b.count(a)
 
 print("la cantidad de veces que aparece es ", cantidaddeveces)

@@ -1,3 +1,4 @@
+"Este modulo resuelve el ejercicio 1103"
 
 while True:
     try:
@@ -26,6 +27,6 @@ if a % b == 0:
 else:
     print("false: ", a, "no es divisor de: ", b)
 
-print("El {b}% de {a} es: ", d)
+print("El ", b, "% de ", a, " es: ", d)
 
 print("El precio es $", +a)
