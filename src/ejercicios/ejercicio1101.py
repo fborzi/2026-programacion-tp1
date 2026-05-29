@@ -2,9 +2,7 @@
 y luego realizar varias operaciones con ella, como calcular su longitud,ver si tiene un caracter espe
 cifico,convertirla a mayusculas,etc."""
 
-palabra=input ()
-print(palabra)
-
+palabra=input ("Ingrese una cadena: ")
 
 print("La longitud de la cadena es: ",len(palabra))
 
@@ -12,7 +10,7 @@ print("La longitud de la cadena es: ",len(palabra))
 if "la" in palabra:
     print("Contiene 'la': Si")
 else:
-    print("Contiene 'la':No")
+    print("Contiene 'la': No")
 
    
 print('Cadena en mayúsculas :', palabra.upper())
