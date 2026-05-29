@@ -1,7 +1,7 @@
 palabra=input("Ingrese una palabra: ")
 print(palabra)
 print("La longitud de la cadena es: ",len(palabra))
-if palabra.find("la") != -1:
+if "la" in palabra:
     print('Contiene "la": Si')
 else:
     print('Contiene "la": No')
