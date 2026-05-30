@@ -7,20 +7,17 @@ suma = 0
 division = 0.0
 porcentaje = 0.0
 
-a = int(input("Ingrese el primer numero: "))
-b = int(input("Ingrese el segundo numero: "))
+a = int(input("Ingrese numero1: "))
+b = int(input("Ingrese numero2: "))
 
-suma = a + b
-porcentaje = int((a * b) / 100)
+print("La suma de", a, "y", b, "es:", a + b)
 
 if b != 0:
-    division = a / b
+    print("La división de", a, "y", b, "es:", a / b)
+    print("Es divisor:", a % b == 0)
 else:
-    division = 0
-print("La suma de", a, "y", b, "es:", suma)
-print("La division de", a, "y", b, "es:", division)
-if b != 0 and a % b == 0:
-    print("Es divisor: True")
-else:
-    print("Es divisor: False")
-print("El", str(b) + "%", "de", a, "es:", porcentaje)
+    print("No se puede dividir por cero")
+    print("La división de", a, "y", b, "es:", 0)
+    print("Es divisor:", False)
+
+print("El", b,"%" "de", a, "es:", a * b / 100)
