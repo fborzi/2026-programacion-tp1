@@ -4,9 +4,10 @@ b = 0
 c = 0
 d = 0.0
 e = 0.0
-f = 0.0
-a = int(input("Ingrese el primer nùmero: "))
-b = int(input("Ingrese el segundo nùmero: "))
+f = 0
+while a == 0 or b == 0:
+    a = int(input("Ingrese el primer nùmero: "))
+    b = int(input("Ingrese el segundo nùmero: "))
 c = a + b
 d = a / b
 e = a % b
