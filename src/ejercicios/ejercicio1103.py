@@ -32,7 +32,7 @@ print("La suma de", a, "y", b, "es:", a + b)
 print("La división de", a, "y", b, "es:", division)
 print("Es divisor:", es_divisible)
 print("El", str(b) + "% de", a, "es:", porcentaje)
-print(f"El {b}% de {a} es {porcentaje:.2f}")
+# print(f"El {b}% de {a} es {porcentaje:.2f}")
 
 #print("El precio es $"+a) da error porque a es un número y no se puede concatenar directamente con texto.
 #lo que le falta es covertir el numero a cadena para que se puedan concatenar, con str().
