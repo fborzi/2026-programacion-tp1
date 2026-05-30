@@ -10,4 +10,6 @@ cadena = input("Ingrese cadena: ")
 print("La longitud de la cadena es: ", len(cadena))
 print("Contiene 'la' :" , "la" in cadena)
 print("cadena en mayuscula: ", cadena.upper())
-print("vocales en minuscula: ", cadena.count("a") + cadena.count("e") + cadena.count("i") + cadena.count("o") + cadena.count("u"))
+print("vocales en minuscula:",
+      cadena.count("a") + cadena.count("e") + cadena.count("i")
+      + cadena.count("o") + cadena.count("u"))

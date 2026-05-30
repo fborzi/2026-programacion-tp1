@@ -5,12 +5,12 @@ se verifique cuantas veces se encuentra lo que se ingresa en la segunda cadena
 dentro de la primera. Despues pedimos que ambas cadenas se junten. Y por ultimo buscamos 
 cuantas veces aparece la letra H en la segunda cadena.
 """
-cantidad = 0
+texto1 = input("Ingrese texto: ")
+texto2 = input("Ingrese texto: ")
+letra = texto1[0]
+cantidad = texto2.lower().count(texto1.lower())
 
-texto1 = input("Ingrese la primer cadena: ")
-texto2 = input("Ingrese la segunda cadena: ").lower()
-cantidad = texto2.count(texto1)
-
-print("Cantidad de veces que aparece: ", cantidad)
-print("Concatenacion: ", texto1 + texto2)
-print("la letra 'H' aparece", texto2.count("h"), "veces en la cadena", 'texto2')
+print("Cantidad de veces que aparece:", cantidad)
+print("Concatenacion:", texto1.lower() + texto2.lower())
+print("La letra", letra, "aparece",
+    texto2.count(letra), "veces en la cadena", texto2)
