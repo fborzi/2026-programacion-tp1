@@ -9,9 +9,8 @@ cantidad = 0
 
 texto1 = input("Ingrese la primer cadena: ")
 texto2 = input("Ingrese la segunda cadena: ").lower()
-concatenando = texto1.lower() + texto2.lower()
 cantidad = texto2.count(texto1)
 
 print("Cantidad de veces que aparece: ", cantidad)
-print("Concatenacion: ", concatenando)
+print("Concatenacion: ", texto1 + texto2)
 print("la letra 'H' aparece", texto2.count("h"), "veces en la cadena", 'texto2')

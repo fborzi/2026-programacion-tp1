@@ -3,7 +3,6 @@ En el ejercicio 1104, vamos a ingresar una dos digitos para el dia, dos digitos 
 año. Luego cambiaremos la forma de verlo en la pantalla, donde quedara primero los cuatro digitos del año, los dos 
 del mes y los dos del dia.
 """
-
 fecha = input()
 
 dia = fecha[0:2]
