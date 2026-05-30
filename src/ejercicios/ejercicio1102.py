@@ -1,7 +1,5 @@
 a = input("Ingrese la primera cadena: ")
 b = input("Ingrese la segunda cadena: ")
-print(a)
-print(b)
 contador = a.count(b)
 print("Cantidad de veces que aparece:", contador)
 c = a + b
