@@ -2,7 +2,7 @@
 y luego realizar varias operaciones con ella, como calcular su longitud,ver si tiene un caracter espe
 cifico,convertirla a mayusculas,etc."""
 
-palabra=input ("Ingrese una cadena: ")
+palabra=input()
 
 print("La longitud de la cadena es: ",len(palabra))
 
