@@ -6,14 +6,14 @@ la cadena ingresada y va detallar la longitud de la misma. Luego se pide verific
 si en la cadena que se ingreso se encuentra 'la'. Luego se convertira la cadena completa en mayuscula.
 Y finalizamos contando la cantidad de vocales que tiene la cadena ingresada.
 """
-cadena = input("Ingrese cadena")
-Vocales = (cadena.count("a") + cadena.count("e") + cadena.count("i") + cadena.count("o") + cadena.count("u"))
+texto = input("Ingrese texto: ")
+vocale = 0
+Vocales = (texto.count("a") + texto.count("e") + texto.count("i") + texto.count("o") + texto.count("u"))
 
-print("Cadena ingresada: ", cadena)
-print("La longitud de la cadena es: ", len(cadena))
-if "la" in cadena: 
+print("La longitud de la cadena es: ", len(texto))
+if "la" in texto:
     print("Contiene 'la': Si")
-else : 
+else :
     print("Contiene 'la': No")
-print("Cadena en mayúscula: ", cadena.upper())
+print("Cadena en mayúscula: ", texto.upper())
 print("Vocales en minúsculas: ", Vocales)
