@@ -7,7 +7,7 @@ c. Indicar si existe en la misma la palabra 'la'.
 d. Convertir la cadena a mayúsculas y mostrarla en pantalla.
 e. Informar cuántas vocales en minúsculas tiene.
 """
-cadena = input("Escribir cadena:")
+cadena = input("Escribir cadena: ")
 
 print("La cantidad de caracteres es: ", len(cadena))
 
