@@ -1,5 +1,4 @@
 cadena = input("ingrese una cadena: ")
-print(cadena)
 print("la longitud de la cadena es:", len(cadena))
 if "la" in cadena:
     print("la cadena contiene la palabra 'la'")
