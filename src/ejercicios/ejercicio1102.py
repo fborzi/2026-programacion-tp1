@@ -7,8 +7,8 @@ cuantas veces aparece la letra H en la segunda cadena.
 """
 texto1 = input("Ingrese texto: ")
 texto2 = input("Ingrese texto: ")
-letra = texto1[0]
-cantidad = texto2.lower().count(texto1.lower())
+letra = texto1[0].lower()
+cantidad = texto2.lower().count(letra)
 
 print("Cantidad de veces que aparece:", cantidad)
 print("Concatenacion:", texto1.lower() + texto2.lower())
