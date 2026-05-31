@@ -8,11 +8,11 @@ print("La suma de", a, "y", b, "es:", suma)
 
 if b != 0:
     division = a / b
-    es_divisor = (a % b == 0)
+    es_divisor = (b % a == 0)
 else:
     division = 0
     es_divisor = False
-    
+
 print("La division de", a, "y", b, "es:", division)
 print("Es divisor:", es_divisor)
 
