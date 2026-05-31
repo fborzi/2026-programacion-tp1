@@ -6,10 +6,14 @@ b = int(input("Ingrese el segundo numero: "))
 suma = a + b
 print("La suma de", a, "y", b, "es:", suma)
 
-division = a / b
+if b != 0:
+    division = a / b
+    es_divisor = (a % b == 0)
+else:
+    division = 0
+    es_divisor = False
+    
 print("La division de", a, "y", b, "es:", division)
-
-es_divisor = (a % b == 0)
 print("Es divisor:", es_divisor)
 
 porcentaje = b * a / 100
