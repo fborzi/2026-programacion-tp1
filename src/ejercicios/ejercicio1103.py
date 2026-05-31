@@ -6,23 +6,13 @@ b = int(input("Ingrese el segundo numero: "))
 suma = a + b
 print("La suma de", a, "y", b, "es:", suma)
 
-if b != 0:
-    division = a / b
-else:
-    division = 0
-
+division = a / b
 print("La division de", a, "y", b, "es:", division)
 
-if a != 0:
-    es_divisor = (a % b == 0)
-else:
-    es_divisor = False
-
+es_divisor = (a % b == 0)
 print("Es divisor:", es_divisor)
 
-porcentaje = (b * a) / 100
-if porcentaje.is_integer():
-    porcentaje = int(porcentaje)
+porcentaje = b * a / 100
 print("El", b, "% de", a, "es:", porcentaje)
 #Para mostrar el resultado con decimales seria: 
 #print("El", b, "% de", a, "es:", f"{porcentaje:.2f}")
