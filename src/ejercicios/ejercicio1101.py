@@ -1,4 +1,7 @@
-cadena = input("ingrese una cadena:")
+""""comentario: este ejercicio te permite ingresar una cadena de un texto,
+cuenta la longuitud del texto, verifica si cintiene X palabra y lo convierte en mayuscula"""
+
+cadena = input("ingrese una cadena:")  
 print("la cadena es: ", cadena)
 longitud = len(cadena)
 print("la longitud de la cadena es: ", longitud) 
