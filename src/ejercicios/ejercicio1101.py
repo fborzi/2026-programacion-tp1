@@ -20,5 +20,5 @@ vocales = 0
 for letra in cadena:
     if letra in "aeiou":
         vocales += 1
-print("Vocales en minusculas:",vocales)
 
+print("Vocales en minusculas:", vocales)
