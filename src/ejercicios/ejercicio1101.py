@@ -2,9 +2,8 @@
 cuenta la longuitud del texto, verifica si cintiene X palabra y lo convierte en mayuscula"""
 
 cadena = input("ingrese una cadena:")
-
-print(cadena)
-print("la longitud de la cadena es: ",len(cadena)) 
+longuitud = len(cadena)
+print("la longitud de la cadena es: ",longuitud) 
 
 if "la" in cadena:
     print("Contiene 'la': Si")
