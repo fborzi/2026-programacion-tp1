@@ -13,8 +13,12 @@ y para mostrar el resultado con decimales en el ultimo punto lo lograremos de la
 numero1 = int(input("Ingrese primer numero entero:"))
 numero2 = int(input("Ingrese segundo numero entero:"))
 print("la suma de ", numero1, " y ", numero2, " es:", numero1 + numero2)
-print("la division de ", numero1, " y ", numero2, " es: ", numero1 / (numero2 or 1))
-if (numero2/(numero1 or 1))%2 == 0:
+
+if numero2 != 0:
+    print("la division de ", numero1, " y ", numero2, " es: ", numero1 / (numero2 or 1))
+else:
+    print("la division no es posible por numero2 = 0")
+if numero1 != 0 and (numero2/numero1)%2 == 0:
     print("Es divisor: True")
 else:
     print("Es divisor: False")
