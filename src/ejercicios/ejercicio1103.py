@@ -17,10 +17,10 @@ print("la suma de ", numero1, " y ", numero2, " es:", numero1 + numero2)
 if numero2 != 0:
     print(f"la division de {numero1}  y  {numero2} es {int(numero1/numero2)}")
 else:
+    print("la division de", numero1, "y", numero2, "es:", 0.0)
     print("la division es:", False)
-    print(f"la division de {numero1}  y  {numero2} es {0.0}")
-if numero2 != 0 and (numero2/numero1)%2 == 0:
-    print("Es divisor:",True)
+if numero2 != 0 and numero1 != 0:
+    print("Es divisor:",numero1%numero2==0)
 else:
     print("Es divisor:",False)
 print("El", numero2,"% de", numero1,"es", int(numero1*numero2/100))
