@@ -17,11 +17,12 @@ print("la suma de ", numero1, " y ", numero2, " es:", numero1 + numero2)
 if numero2 != 0:
     print(f"la division de {numero1}  y  {numero2} es {int(numero1/numero2)}")
 else:
+    print("No se puede dividir por cero")
     print("la division es:", False)
 if numero1 != 0 and (numero2/numero1)%2 == 0:
     print("Es divisor:",True)
 else:
     print("Es divisor:",False)
-print("El ",numero2,"% de",numero1,"es",int(numero1*numero2/100))
+print("El", numero2,"% de", numero1,"es", int(numero1*numero2/100))
 #print("El ", numero2, "% " "de ",numero1, "es", "{:.2f}".format(numero1 * (numero2/100)))
 #print("El precio es $", numero1)
