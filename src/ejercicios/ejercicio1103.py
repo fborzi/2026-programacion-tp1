@@ -18,7 +18,7 @@ if numero2 != 0:
     print("la division de", numero1 , "y",  numero2, "es:", numero1/numero2)
 else:
     print("la division de", numero1, "y", numero2, "es:", 0.0)
-    print("la division es:", False)
+    print("No se puede dividir por cero")
 if numero2 != 0 and numero1 != 0:
     print("Es divisor:",numero1%numero2==0)
 else:
