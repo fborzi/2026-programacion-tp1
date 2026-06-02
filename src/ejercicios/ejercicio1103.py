@@ -19,7 +19,7 @@ if numero2 != 0:
 else:
     print("la division es:", False)
     print(f"la division de {numero1}  y  {numero2} es {0.0}")
-if numero1 != 0 and (numero2/numero1)%2 == 0:
+if numero2 != 0 and (numero2/numero1)%2 == 0:
     print("Es divisor:",True)
 else:
     print("Es divisor:",False)
