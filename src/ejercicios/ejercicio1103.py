@@ -17,7 +17,7 @@ print("la suma de ", numero1, " y ", numero2, " es:", numero1 + numero2)
 if numero2 != 0:
     print(f"la division de {numero1}  y  {numero2} es {int(numero1/numero2)}")
 else:
-    print("la division no es posible por numero2 = 0")
+    print("No se puede dividir por cero")
     print("la division es:", 0.0)
 if numero1 != 0 and (numero2/numero1)%2 == 0:
     print("Es divisor:",True)
