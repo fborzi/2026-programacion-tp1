@@ -1,3 +1,5 @@
+"""ingresar los numeros, la suma de esos numeros es el resultado de C, luego cambia a dividir y C obtiene 
+nuevo resultado, te dice si es divisor o no y luego saca el porcentaje"""
 A=input("ingrese un numero para A: ")
 B=input("ingrese un numero para B: ")
 
@@ -8,11 +10,12 @@ C = A + B
 
 print("la suma de", A, "y", B, "es", C)
 
-C = A / B
-print("la divicion de", A, "y", B ,"es", C)
+if B != 0:
+    print("La división de", A, "y", B, "es:", A / B)
+else:
+    print("La división de", A, "y", B, "es: No se puede dividir por cero")
 
-C = A % B == 0
-print("es divisor: ", C)
+print("Es divisor:", B % A == 0)
 
-C = (A * B) / 100
+C = (A * B) // 100
 print("el", B,"%", "de", A , "es", C)
