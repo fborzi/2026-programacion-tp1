@@ -10,5 +10,5 @@ imprimiremos el resultado
 cadena1 = input("Ingrese cadena 1 de caracteres: ")
 cadena2 = input("Ingrese cadena 2 de caracteres: ")
 print("Cantidad de veces que aparece: ", cadena2.count(cadena1))
-print(cadena1, cadena2)
-print("la letra '", cadena1[0], "' aparece", cadena2.title().count(cadena1[0]), " veces en la cadena ",cadena2)
+print("Concatenacion:",cadena1, cadena2[0].lower()+ cadena2[1::])
+print("la letra '", cadena1[0], "' aparece", cadena2.lower().count(cadena1[0].lower()), " veces en la cadena ",cadena2)
