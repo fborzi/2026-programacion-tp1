@@ -8,14 +8,16 @@ B=int(B)
 
 C = A + B 
 
-print("la suma de", A, "y", B, "es", C)
-
+print("La suma de", A, "y", B, "es:", C)
 if B != 0:
-    print("La división de", A, "y", B, "es:", A / B)
+    C = A / B
 else:
-    print("La división de", A, "y", B, "es: No se puede dividir por cero")
+    C = 0
+
+print("La división de", A, "y", B, "es:", C)
 
 print("Es divisor:", B % A == 0)
 
 C = (A * B) // 100
-print("el", B,"%", "de", A , "es", C)
+print("el",B,"%", "de", A , "es:", C)
+print("El precio es $" + str(A))
