@@ -10,6 +10,8 @@ para la correcta visualizacion deberiamos cambiar el signo + por una coma, queda
 y para mostrar el resultado con decimales en el ultimo punto lo lograremos de la siguiente manera:
 "print("El ", numero2, "% " "de ",numero1, "es", numero1 * (numero2/100))"
 """
+numero1 = 0.0
+numero2 = 0.0
 numero1 = int(input("Ingrese primer numero entero:"))
 numero2 = int(input("Ingrese segundo numero entero:"))
 print("la suma de ", numero1, " y ", numero2, " es:", numero1 + numero2)
