@@ -16,17 +16,15 @@ while True:
 
 suma = a + b
 division = a / b
-d = a * b / 100
-
+d = a * b / 100,
+dint = int(d[0])
 print("La suma de ", a, " y ", b, " es: ", suma)
 
-print("La division de", a, " y ", b, " es: ", division)
+print("La división de", a, " y ", b, " es: ", division)
 
 if a % b == 0:
-    print("true: ", a, "es divisor de: ", b)
+    print("Es divisor: True")
 else:
-    print("false: ", a, "no es divisor de: ", b)
+    print("Es divisor: False")
 
-print("El ", b, "% de ", a, " es: ", d)
-
-print("El precio es $", +a)
+print("El ", b, "% de ", a, " es: ", dint)
