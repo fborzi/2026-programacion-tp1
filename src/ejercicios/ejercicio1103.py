@@ -10,21 +10,23 @@ para la correcta visualizacion deberiamos cambiar el signo + por una coma, queda
 y para mostrar el resultado con decimales en el ultimo punto lo lograremos de la siguiente manera:
 "print("El ", numero2, "% " "de ",numero1, "es", numero1 * (numero2/100))"
 """
-numero1 = 0.0
-numero2 = 0.0
+division = 0.0
+suma = 0.0
+porcentaje = 0.0
+divisionPosible = False
 numero1 = int(input("Ingrese primer numero entero:"))
 numero2 = int(input("Ingrese segundo numero entero:"))
-print("la suma de ", numero1, " y ", numero2, " es:", numero1 + numero2)
-
+suma = numero1 + numero2
 if numero2 != 0:
-    print("la division de", numero1 , "y",  numero2, "es:", float(numero1/numero2))
-else:
-    print("No se puede dividir por cero")
-if numero2 != 0 and numero1 != 0:
-    print("Es divisor:",numero1%numero2==0)
-else:
-    print("Es divisor:",False)
-    print("la division de", numero1, "y", numero2, "es:", 0.0)
-print("El", numero2,"% de", numero1,"es:", int(numero1*numero2/100))
+    division = numero1/numero2
+    porcentaje = numero1 * numero2/100    
+    divisionPosible = numero1%numero2==0
+    
+    
+    
+print("la suma de ", numero1, " y ", numero2, " es:", suma)
+print("la division de", numero1 , "y",  numero2, "es:", division)
+print("Es divisor:",divisionPosible)
+print("El", numero2,"% de", numero1,"es:", porcentaje)
 #print("El ", numero2, "% " "de ",numero1, "es", "{:.2f}".format(numero1 * (numero2/100)))
 #print("El precio es $", numero1)
