@@ -2,18 +2,18 @@
 
 cadena = input("ingrese una cadena de texto: ")
 
-print("la longitud de la cadena es:", len(cadena))
+print("La longitud de la cadena es:", len(cadena))
 
 if "la" in cadena.lower():
     print("Contiene 'la': Si")
 else:
     print("No contiene 'la': No")
 
-print("Cadena en mayúsculas: ")
-print(cadena.upper())
+print("Cadena en mayúsculas:", cadena.upper())
+
 vocales = 0
 
-for letra in cadena.lower:
+for letra in cadena.lower():
     if letra in "aeiou":
         vocales = vocales + 1
-print("Vocales en minusculas", vocales)
+print("Vocales en minúsculas:", vocales)
