@@ -15,7 +15,7 @@ numero2 = int(input("Ingrese segundo numero entero:"))
 print("la suma de ", numero1, " y ", numero2, " es:", numero1 + numero2)
 
 if numero2 != 0:
-    print("la division de", numero1 , "y",  numero2, "es:", numero1/numero2)
+    print("la division de", numero1 , "y",  numero2, "es:", float(numero1/numero2))
 else:
     print("la division de", numero1, "y", numero2, "es:", 0.0)
     print("No se puede dividir por cero")
