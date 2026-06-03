@@ -1,3 +1,6 @@
+"""Este ejericio se trata de operaciones con dos cadenas de texto
+haciendo diferentes opciones """
+
 palabra=input("Ingrese una palabra: ")
 palabra2=input("Ingrese otra palabra: ")
 print(palabra)
