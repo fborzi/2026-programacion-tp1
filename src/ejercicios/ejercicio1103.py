@@ -19,12 +19,12 @@ print("la suma de ", numero1, " y ", numero2, " es:", numero1 + numero2)
 if numero2 != 0:
     print("la division de", numero1 , "y",  numero2, "es:", float(numero1/numero2))
 else:
-    print("la division de", numero1, "y", numero2, "es:", 0.0)
     print("No se puede dividir por cero")
 if numero2 != 0 and numero1 != 0:
     print("Es divisor:",numero1%numero2==0)
 else:
     print("Es divisor:",False)
+    print("la division de", numero1, "y", numero2, "es:", 0.0)
 print("El", numero2,"% de", numero1,"es:", int(numero1*numero2/100))
 #print("El ", numero2, "% " "de ",numero1, "es", "{:.2f}".format(numero1 * (numero2/100)))
 #print("El precio es $", numero1)
