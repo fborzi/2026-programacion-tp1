@@ -17,13 +17,10 @@ divisionPosible = False
 numero1 = int(input("Ingrese primer numero entero:"))
 numero2 = int(input("Ingrese segundo numero entero:"))
 suma = numero1 + numero2
+porcentaje = numero1 * numero2/100 
 if numero2 != 0:
-    division = numero1/numero2
-    porcentaje = numero1 * numero2/100    
-    divisionPosible = numero1%numero2==0
-    
-    
-    
+    division = numero1/numero2   
+    divisionPosible = numero1%numero2==0    
 print("la suma de ", numero1, " y ", numero2, " es:", suma)
 print("la division de", numero1 , "y",  numero2, "es:", division)
 print("Es divisor:",divisionPosible)
