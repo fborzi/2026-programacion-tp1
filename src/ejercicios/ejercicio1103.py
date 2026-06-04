@@ -17,6 +17,7 @@ if n2 == 0:
     porcentaje = n1 * (n2 / 100)
     print(f"El {n2}% de {n1} es: {int(porcentaje)}")
     print("No se puede dividir por cero")
+
 else:
     division = n1 / n2
     es_divisor = (n1 % n2 == 0)
