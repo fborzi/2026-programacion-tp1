@@ -1,11 +1,23 @@
-"""Este ejericio se trata de operaciones con dos cadenas de texto
-haciendo diferentes opciones """
+"""Este ejericio se trata de ingresar dos cadenas y realizar diferentes operaciones 
+con ellas, como contar cuantas veces aparece una cadena dentro de la otra,concatenar las cadenas, etc."""
 
-palabra=input("Ingrese una palabra: ")
-palabra2=input("Ingrese otra palabra: ")
-print(palabra)
-print(palabra2)
-print("Cantidad de veces que aparece: ",palabra.count(palabra2))
-print("Concatenacion: ",palabra + palabra2.lower()[0]+palabra2[1:])
-primeraletra=palabra[0]
-print("La letra '",primeraletra,"' aparece ",primeraletra.count(palabra2),"veces en la cadena",palabra+palabra2)
+cadena1 = input("Ingrese la primera cadena: ")
+cadena2 = input("Ingrese la segunda cadena: ")
+
+
+
+cantidad = cadena2.count(cadena1)
+print("Cantidad de veces que aparece:", cantidad)
+
+
+
+cadena2_minuscula = cadena2[0].lower() + cadena2[1:]
+concatenacion = cadena1 + cadena2_minuscula
+print("Concatenación:", concatenacion)
+
+letra = cadena1[0]
+concatenacion=cadena1+cadena2
+cantidad_letra =concatenacion.count(letra)
+
+
+print("La letra '",letra,"' aparece",cantidad_letra,"veces en la cadena '",concatenacion,"'")
