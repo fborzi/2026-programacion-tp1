@@ -1,13 +1,25 @@
-num1= input("Ingrese un numero: ")
-num2= input("Ingrese otro numero: ")
-suma= int(num1)+int(num2)
-division = int(num1)/int(num2)
-divisionEntera = int(num1)%int(num2)
-a=num1
-porcentaje = int(num1)*(int(num2)/100)
-print("La suma de ",num1, "+", num2, " es igual a: ", suma)
-print("La division de: ", num1, "y", num2, "es igual a: ", division)
-print(divisionEntera is 0)
-print(f" El {num2} porciento de{num1} es:  {porcentaje:.2f}")
-    
-print("El precio es$"+a)
+"""
+Programa para realizar operaciones matemáticas básicas y porcentajes.
+"""
+
+num1 = input()
+num2 = input()
+
+n1 = int(num1)
+n2 = int(num2)
+
+suma = n1 + n2
+print(f"La suma de {n1} y {n2} es: {suma}")
+
+if n2 == 0:
+    print(f"La división de {n1} y {n2} es: 0.0")
+    print("Es divisor: False")
+else:
+    division = n1 / n2
+    es_divisor = (n1 % n2 == 0)
+    print(f"La división de {n1} y {n2} es: {division}")
+    print(f"Es divisor: {es_divisor}")
+
+
+porcentaje = n1 * (n2 / 100)
+print(f"El {n2}% de {n1} es: {int(porcentaje)}")
