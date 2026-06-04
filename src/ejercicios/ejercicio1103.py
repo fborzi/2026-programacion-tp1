@@ -13,14 +13,14 @@ print(f"La suma de {n1} y {n2} es: {suma}")
 
 if n2 == 0:
     print(f"La división de {n1} y {n2} es: 0.0")
-    print("Es divisor: False")
+    porcentaje = n1 * (n2 / 100)
+    print(f"El {n2}% de {n1} es: {int(porcentaje)}")
     print("No se puede dividir por cero")
+    print("Es divisor: False")
 else:
     division = n1 / n2
     es_divisor = (n1 % n2 == 0)
     print(f"La división de {n1} y {n2} es: {division}")
     print(f"Es divisor: {es_divisor}")
-
-
-porcentaje = n1 * (n2 / 100)
-print(f"El {n2}% de {n1} es: {int(porcentaje)}")
+    porcentaje = n1 * (n2 / 100)
+    print(f"El {n2}% de {n1} es: {int(porcentaje)}")
