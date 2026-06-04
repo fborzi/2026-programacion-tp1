@@ -21,7 +21,7 @@ if n2 == 0:
 
 else:
     division = n1 / n2
-    es_divisor = (n1 % n2 == 0)
+    es_divisor = n1 % n2 == 0
     porcentaje = n1 * (n2 / 100)
     print(f"La división de {n1} y {n2} es: {division}")
     print(f"Es divisor: {es_divisor}")

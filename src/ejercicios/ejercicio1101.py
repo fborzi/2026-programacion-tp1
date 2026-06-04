@@ -1,4 +1,6 @@
-
+"""
+Programa para analizar longitudes y vocales en cadenas.
+"""
 cadena = input()
 a = cadena.count('a')
 e = cadena.count('e')
