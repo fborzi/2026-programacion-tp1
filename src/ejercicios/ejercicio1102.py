@@ -6,7 +6,7 @@ cadena2 = input()
 
 letra1 = cadena1[0]
 
-veces_letra = cadena2.lower().count(letra1.lower())
+aparece = cadena2.lower().count(letra1.lower())
 
 print("Cantidad de veces que aparece:", cadena2.count(cadena1))
 print("Concatenacion:", cadena1.lower() + cadena2.lower())
