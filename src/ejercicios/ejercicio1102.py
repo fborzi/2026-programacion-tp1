@@ -11,9 +11,9 @@ aparece = cadena2.lower().count(letra1.lower())
 
 print("Cantidad de veces que aparece:", cadena1.count(cadena2))
 
-cadena2_modificada = cadena2[0].lower() + cadena2[1:]
-print("Concatenación:", cadena1 + cadena2_modificada)
 
+concatenacion = cadena1.lower() + cadena2.lower()
+print("Concatenación:", concatenacion)
 
 print(f"La letra '{letra1}' aparece {aparece} veces en la cadena '{cadena2}'")
 
