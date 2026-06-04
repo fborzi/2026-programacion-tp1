@@ -1,3 +1,6 @@
+"""1101"""
+
+
 texto = input("Ingrese una texto: ")
 
 print("La longitud de la cadena es:", len(texto))

@@ -1,3 +1,6 @@
+"""1102"""
+
+
 texto1 = input("ingrese la primera cadena: ")
 texto2 = input("ingrese la segunda cadena: ")
 

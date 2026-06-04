@@ -1,3 +1,6 @@
+"""1104"""
+
+
 fecha = input("Ingrese la fecha (dd/mm/aaaa): ")
 
 dia = fecha[0:2]
