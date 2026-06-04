@@ -16,7 +16,7 @@ if n2 == 0:
     print(f"El {n2}% de {n1} es: 0.0")
     print("Es divisor: False")
     porcentaje = n1 * (n2 / 100)
-    print(int(porcentaje))
+    print(f"El {n2}% de {n1} es: {int(porcentaje)}")
 
 
 else:
