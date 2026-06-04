@@ -17,4 +17,3 @@ concatenacion = (cadena1+ cadena2).lower()
 print("Concatenación:", concatenacion)
 
 print(f"La letra '{letra1}' aparece {aparece} veces en la cadena '{cadena2}'")
-
