@@ -4,10 +4,12 @@
 cadena1 = input()
 cadena2 = input()
 
-letra1 = cadena1[0]
+
+letra1 = cadena1
 
 aparece = cadena2.lower().count(letra1.lower())
 
 print("Cantidad de veces que aparece:", cadena2.count(cadena1))
 print("Concatenacion:", cadena1.lower() + cadena2.lower())
-print("La letra", letra1, "aparece", veces_letra, "veces en la cadena", cadena2)
+
+print("La letra", letra1, "aparece", aparece, "veces en la cadena", cadena2)
