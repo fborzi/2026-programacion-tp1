@@ -14,7 +14,7 @@ print(f"La suma de {n1} y {n2} es: {suma}")
 if n2 == 0:
     print(f"La división de {n1} y {n2} es: 0.0")
     print(f"El {n2}% de {n1} es: 0.0")
-    print(f"Es divisor: False")
+    print("Es divisor: False")
     print("No se puede dividir por cero")
 
 
