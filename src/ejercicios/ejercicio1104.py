@@ -1,0 +1,5 @@
+fecha = input("Ingrese la fecha (dd/mm/aaaa): ")
+dia, mes, anio= fecha.split("/")
+print("dia:", dia)
+print("mes:", mes)
+print("año:", anio)
