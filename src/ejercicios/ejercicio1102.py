@@ -9,7 +9,7 @@ letra1 = cadena1[0]
 
 aparece = cadena2.lower().count(letra1.lower())
 
-print("Cantidad de veces que aparece:", cadena2.count(cadena1))
+print("Cantidad de veces que aparece:", cadena1.count(cadena2))
 
 cadena2_modificada = cadena2[0].lower() + cadena2[1:]
 print("Concatenación:", cadena1 + cadena2_modificada)
