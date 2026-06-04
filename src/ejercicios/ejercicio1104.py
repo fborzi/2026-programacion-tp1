@@ -1,6 +1,10 @@
-fecha= input("ingrese una fecha (Formatos dd/mm/aaaa) : ")
+"""
+Programa para formatear fechas según la salida esperada.
+"""
 
-print("Formato: ",fecha[0:2],"-",fecha[3:5],"-",fecha[6:10])
-print("El dia es: ",fecha[0:2])
-print("El mes es: ",fecha[3:5])
-print("El año es: ",fecha[6:10])
+fecha = input()
+
+print(f"Formato: {fecha[8:10]}-{fecha[3:5]}-{fecha[0:2]}")
+print(f"El día es: {fecha[0:2]}")
+print(f"El mes es: {fecha[3:5]}")
+print(f"El año es: {fecha[6:10]}")
