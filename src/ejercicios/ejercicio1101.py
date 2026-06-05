@@ -7,7 +7,7 @@ a = ""
 contador = 0
 a = input("Ingrese una cadena: ")
 print("Longitud de la cadena:",len(a))
-if ("la" in a) == True:
+if ("la" in a) is True:
     print("Contiene 'la': Si")
 else:
     print("Contiene 'la': No")
