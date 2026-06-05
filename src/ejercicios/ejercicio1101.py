@@ -1,3 +1,5 @@
+"""Ejercicio 1101 - Vocales y longitud de cadenas"""
+
 cadena = input("ingrese una cadena: ") 
 
 print("la longitud de la cadena es:", len(cadena))

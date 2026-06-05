@@ -1,3 +1,5 @@
+"""Ejercicio 1104 - Formato de fecha"""
+
 fecha = input()
 
 primera_barra = fecha.index('/')
