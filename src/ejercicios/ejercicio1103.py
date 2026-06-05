@@ -9,6 +9,8 @@ SUMA = a+b
 if b != 0:
  DIVISION = a/b
  DIVISOR = a % b == 0 
+else:
+ print("No es posible dividir por cero")
 PORCENTAJE = a//10
 
 
