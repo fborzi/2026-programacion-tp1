@@ -1,6 +1,18 @@
-a=int(input("Ingrese el primer numero: "))
-b=int(input("Ingrese el segundo numero: "))
-print("La suma de", a , "y",b, "es:", a + b )
-print("La division de", a , "y" , b , "es:", a/b)
-print("Es divisor:", b % a == 0 )
-print("El 10% de",a,"es:", a//10)
+a= int(input("Ingrese el primer numero:"))
+b= int(input("Ingrese el segundo numero:"))
+
+suma = 0
+division = 0.0
+porcentaje = 0
+divisor = False
+
+suma = a + b
+division = a / b
+porcentaje = a // b 
+divisor = a % b == 0 
+
+
+print("La suma de", a , "y",b, "es:", suma )
+print("La division de", a , "y" , b , "es:", division)
+print("Es divisor:", divisor )
+print("El 10% de",a,"es:", porcentaje)
