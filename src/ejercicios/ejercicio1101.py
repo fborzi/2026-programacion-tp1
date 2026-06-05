@@ -13,5 +13,5 @@ contador = 0
 
 for letra in cadena:
     if letra in "aeiou":
-        contador = 0
+        contador +=1
 print("vocales en minusculas:",contador) 

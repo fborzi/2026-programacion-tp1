@@ -8,9 +8,14 @@ if segundoNumero != 0:
     division = primerNumero / segundoNumero
     print("La division de", primerNumero, "y", segundoNumero, "es:", division)
 else:
-    print("La division de", primerNumero, "y", segundoNumero, "es: No se puede dividir por cero")
-
-esDivisor = segundoNumero != 0 and primerNumero / 100
+    print("No se puede dividir por cero")
+    
+if segundoNumero != 0:
+    esDivisor = primerNumero %
+segundoNumero == 0
+else:
+    esDivisor = False
+    
 print("es divisor", esDivisor)
 
 porcentaje = int(primerNumero * segundoNumero / 100)
