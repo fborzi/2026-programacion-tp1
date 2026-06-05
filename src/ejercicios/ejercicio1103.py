@@ -17,7 +17,7 @@ de texto utilizando str porque no se puede concatenar un int y un str, quedaria:
 
 a = 0
 b = 0
-division = 0
+division = 0.0
 porcentaje = 0
 
 a = int(input("ingrese el primer número entero: "))
@@ -26,11 +26,12 @@ b = int(input("ingrese el segundo número entero: "))
 print(f"La suma de {a} y {b} es: {a + b}")
 
 if b != 0:
-    division = a / b
-    print(f"La división de {a} y {b} es: {division}")
+    print(f"La división de {a} y {b} es: {a / b}")
     print(f"Es divisor: {a % b == 0}")
+    porcentaje = a * b / 100
+    print(f"El {b}% de {a} es: {int(porcentaje) if porcentaje == int(porcentaje) else porcentaje}")
 else:
     print("No se puede dividir por cero.")
-
-porcentaje = a * b / 100
-print(f"El {b}% de {a} es: {porcentaje:.2f}")
+    print(f"La división de {a} y {b} es: {0.0}")
+    print(f"Es divisor: False")
+    print(f"El {b}% de {a} es: 0")

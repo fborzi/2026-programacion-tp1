@@ -4,7 +4,7 @@ del resultado, en el archivo .py; se debe mostrar el resultado con print()
 
 en el ejercicio b Utilicé len(frase) para obtener la longitud de la cadena.
 en el ejercicio c utilice frase.lower() para obtener la longitud de la cadena
-utilice frase.upper() para convertir la cadena en mayuscula 
+utilice frase.upper() para convertir la cadena en mayuscula
 en el ejercicio d inicialice el contador en 0 para que contara cada vez que se encuentra una vocal,
 asi mismo declare la variable vocales para despues buscarlas en el for y contar cuantas veces se encuentra
 en la frase ingresada."""
@@ -22,7 +22,7 @@ print("Cadena en mayúsculas:", frase.upper())
 VOCALES = "aeiou"
 contador = 0
 
-for letra in frase.lowe():
+for letra in frase.lower():
     if letra in VOCALES:
         contador += 1
 
