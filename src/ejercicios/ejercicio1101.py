@@ -1,7 +1,6 @@
-cadena = input()
+cadena = input("ingrese una cadena")
 
-print("cadena ingresada:", cadena)
-print(len(cadena))
+print("la longitud de la cadena es:", len(cadena))
 
 if "la" in cadena:
     print('contiene "la": si')
@@ -10,9 +9,9 @@ else:
     
 print("cadena en mayusculas:", (cadena.upper()))
 
-
 contador = 0
+
 for letra in cadena:
     if letra in "aeiou":
-        contador = contador + 1
+        contador = 0
 print("vocales en minusculas:",contador) 

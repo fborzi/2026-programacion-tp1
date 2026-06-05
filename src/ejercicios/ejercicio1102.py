@@ -1,16 +1,12 @@
 cadena1 = input("ingrese la primera cadena: ")
 cadena2 = input("ingrese la segunda cadena: ")
 
-cantidad = cadena1.count(cadena2)
-print("cantidad de veces que aparece:", cantidad)
+print("cantidad de veces que aparece:", cadena2.count(cadena1))
 
-cadena2 = cadena2[0].lower() + cadena2 [1:]
-
-nueva = cadena1 + " " + cadena2
-print("concatenacion:" , nueva)
+concatenacion = cadena1.lower() + cadena2.lower()
+print("Concatenacion:", concatenacion)
 
 letra = cadena1[0]
+cantidad = cadena2.count(letra)
 
-cantidad_letra = nueva.count(letra)
-print("la letra", letra, "aparece", cantidad_letra,
-      "veces en la cadena", cadena2)
+print ("la letra", letra, "aparece", cantidad, "veces en la cadena", "" + cadena2 + "")
