@@ -1,4 +1,4 @@
-"Este modulo resuelve el ejercicio 1103"
+"Este modulo lee dos numeros enteros e informa su suma, su division, si el primero es divisible por el segundo y el porcentaje del segundo sobre el primero."
 
 while True:
     try:
