@@ -6,9 +6,10 @@ PORCENTAJE = 0
 DIVISOR = False
 
 SUMA = a+b 
-DIVISION = a/b
-PORCENTAJE= a//b 
-DIVISOR = a % b == 0 
+if b != 0:
+ DIVISION = a/b
+ DIVISOR = a % b == 0 
+PORCENTAJE = a//10
 
 
 print("La suma de", a , "y",b, "es:", SUMA)
