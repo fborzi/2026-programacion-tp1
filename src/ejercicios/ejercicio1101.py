@@ -8,6 +8,12 @@ d. Convertir la cadena a mayúsculas y mostrarla en pantalla.
 e. Informar cuántas vocales en minúsculas tiene.
 """
 cadena = input("Escribir cadena:")
+VOCALES = "aeiou"
+aux = 0
+
+for letra in VOCALES:
+    if letra in cadena:
+        aux += 1
 
 print("La cantidad de caracteres es:", len(cadena))
 
@@ -17,12 +23,5 @@ else:
     print("Contiene 'la': No")
 
 print(cadena.upper())
-
-VOCALES = "aeiou"
-aux = 0
-
-for letra in VOCALES:
-    if letra in cadena:
-        aux += 1
 
 print("Se encontraron ",aux,"vocales.")
