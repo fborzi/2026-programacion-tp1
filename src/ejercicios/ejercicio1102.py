@@ -4,7 +4,7 @@ cadena2 = input("Ingrese la segunda cadena: ")
 print("Cantidad de veces que aparece:", cadena2.count(cadena1))
 concatenacion = cadena1.lower() + cadena2[0].lower() + cadena2[1:]
 print("Concatenación:", concatenacion)
-primera_letra = cadena1[0]
-cantidad = cadena2.count(primera_letra)
-print("La letra '" + primera_letra + "' aparece", cantidad,
-      "veces en la cadena '" + cadena2 + "'")
+cantidad = 0
+for letra in cadena1:
+    cantidad += cadena2.count(letra)
+print("cantidad de letras de cadena1 que aparecen en cadena2:", cantidad)
