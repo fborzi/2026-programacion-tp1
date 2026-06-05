@@ -1,3 +1,7 @@
+"""
+El programa permite ingresar una fecha para despues mostrarla con otro formato 
+y mostrar el dia, mes y el año por separado
+"""
 a = ""
 anio = ""
 mes = ""
