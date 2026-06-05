@@ -18,7 +18,7 @@ else:
     
 print("es divisor", esDivisor)
 
-porcentaje = int(primerNumero * segundoNumero / 100)
+porcentaje = (primerNumero * segundoNumero / 100)
 print("El", segundoNumero, "% de", primerNumero, "es:" , porcentaje)
 
-print("el precio es $" + str(primerNumero))
+print("el precio es $", (primerNumero))
