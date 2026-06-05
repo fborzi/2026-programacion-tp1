@@ -1,3 +1,5 @@
+# en este ejercicio se pide ingresar dos cadenas por teclado que tienen que ser numero y se realiza la suma, la division, si es divisor y luego la resta
+
 SUMA = 0
 DIVISION = 0.0
 PORCENTAJE = 0.0
