@@ -10,8 +10,7 @@ print("La longitud de la cadena es: ",len(palabra))
 if "la" in palabra:
     print("Contiene 'la': Si")
 else:
-    print("Contiene 'la': No")
-  
+    print("Contiene 'la': No") 
 print('Cadena en mayúsculas :',palabra.upper())
 
 
