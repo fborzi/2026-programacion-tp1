@@ -9,5 +9,5 @@ if "la" in cadena:
 else:
     print("Contiene 'la': No")
     print("cadena en mayuscula: ", cadena.upper())
-    vocales = ["a","e","i","o","u"]
-    print("vocales en minuscula: ", sum(1 for letra in cadena if letra in vocales))
+vocales = ["a","e","i","o","u"]
+print("vocales en minuscula: ", sum(1 for letra in cadena if letra in vocales))
