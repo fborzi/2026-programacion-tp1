@@ -11,7 +11,7 @@ else:
     print("No se puede dividir por cero")
     
 if segundoNumero != 0:
-    esDivisor = primerNumero %
+    esDivisor = primerNumero % segundoNumero == 0
 segundoNumero == 0
 else:
     esDivisor = False
@@ -21,4 +21,4 @@ print("es divisor", esDivisor)
 porcentaje = (primerNumero * segundoNumero / 100)
 print("El", segundoNumero, "% de", primerNumero, "es:" , porcentaje)
 
-print("el precio es $", (primerNumero))
+print("el precio es $", str(primerNumero))
