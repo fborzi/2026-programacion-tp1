@@ -2,15 +2,16 @@
 cadena1 = input()
 cadena2 = input()
 
-# A) Cantidad de veces que aparece la primera cadena en la segunda
-print("Cantidad de veces que aparece:", cadena2.count(cadena1))
+# Cantidad de veces que aparece la primera cadena en la segunda
+cantidad = cadena2.count(cadena1)
+print("cantidad de veces que aparece:", cantidad)
 
-# B) Concatenación
+# Concatenación de ambas cadenas
 cadena2 = cadena2[0].lower() + cadena2[1:]
-print("Concatenacion:", cadena1 + cadena2)
+print("concatenacion:", cadena1 + cadena2)
 
-# C) Contar la primera letra de la primera cadena en la segunda
+# Contar cuántas veces aparece la primera letra de la primera cadena en la segunda
 letra = cadena1[0]
-cantidad = cadena2.count(letra)
+cantidad_letra = cadena2.count(letra)
 
-print(f'La letra "{letra}" aparece {cantidad} veces en la cadena \'{cadena2}\'')
+print(f'la letra "{letra}" aparece {cantidad_letra} veces en la cadena \'{cadena2}\'')
