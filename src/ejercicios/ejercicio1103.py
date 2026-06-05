@@ -13,6 +13,6 @@ PORCENTAJE = a//10
 
 
 print("La suma de", a , "y",b, "es:", SUMA)
-print("La division de", a , "y" , b , "es:", DIVISION)
+print("La división de", a , "y" , b , "es:", DIVISION)
 print("Es divisor:", DIVISOR )
 print("El 10% de",a,"es:", PORCENTAJE)
