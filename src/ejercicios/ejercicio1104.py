@@ -1,3 +1,8 @@
+"""
+En el ejercicio 1104 primero se define las variables para luego poder hacer el formato 
+y poder imprimir la informacion 
+
+"""
 FECHA = input()
 
 DIA = ""
