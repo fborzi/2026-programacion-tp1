@@ -1,10 +1,5 @@
-""" En este programa se busca procesar una fecha ingresada como cadena de caracteres y extraer sus distintas partes 
-utilizando posiciones e índices.
-El programa:
-Lee una fecha en formato dd/mm/aaaa
-Obtiene el día, mes y año separando partes del texto
-Genera un nuevo formato de fecha
-Muestra la información en pantalla"""
+""" este ejercicio busca procesar una fecha ingresada como cadena de caracteres y extraer sus distintas partes 
+-utilizando posiciones e índices."""
 
 fecha = input("Ingrese una fecha (dd/mm/aaaa): ")
 
