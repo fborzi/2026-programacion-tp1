@@ -1,2 +1,6 @@
-n=input("Ingrese prier numero: ")
-n=input("ingrese segundo numero: ")
+a=int(input("Ingrese el primer numero: "))
+b=int(input("Ingrese el segundo numero: "))
+print("La suma de", a , "y",b, "es:", a + b )
+print("La division de", a , "y" , b , "es:", a/b)
+print("Es divisor:", a % b == 0 )
+print("El 10% de",a,"es:", a/10)
