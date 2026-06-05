@@ -1,5 +1,5 @@
 """ingrese una fecha,se muestra la fecha desde el año hasta el dia,
-luego por orden"""
+luego por orden, no toma la letra Ñ asi que tuve que escribir anio"""
 fecha = input("ingrese una fecha (dd/mm/aaaa):")
 
 dia = fecha[0:2]
