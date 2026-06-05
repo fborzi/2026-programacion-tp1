@@ -16,7 +16,7 @@ segundoNumero == 0
 else:
     esDivisor = False
     
-print("es divisor", esDivisor)
+print(esDivisor)
 
 porcentaje = (primerNumero * segundoNumero / 100)
 print("El", segundoNumero, "% de", primerNumero, "es:" , porcentaje)
