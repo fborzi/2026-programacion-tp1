@@ -1,13 +1,12 @@
+"""ingrese una fecha,se muestra la fecha desde el año hasta el dia,
+luego por orden"""
 fecha = input("ingrese una fecha (dd/mm/aaaa):")
 
 dia = fecha[0:2]
 mes = fecha[3:5]
-año = fecha[6:10]
+anio = fecha[6:10]
 
-print("formato:", año[2:4] + "-" + mes + "-" + dia)
+print("formato:", anio[2:4] + "-" + mes + "-" + dia)
 print("El dia es:", dia)
 print("El mes es:", mes)
-print("El año es:", año)
-
-
-
+print("El anio es:", anio)
