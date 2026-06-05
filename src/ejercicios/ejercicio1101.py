@@ -9,7 +9,7 @@ e. Informar cuántas vocales en minúsculas tiene.
 """
 cadena = input("Escribir cadena:")
 
-print("La cantidad de caracteres es: ", len(cadena))
+print("La cantidad de caracteres es:", len(cadena))
 
 if "la" in cadena:
     print("Contiene 'la': Si")
