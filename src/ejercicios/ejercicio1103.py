@@ -7,15 +7,15 @@ c=a+b
 print("La suma de", a, "y", b, "es:", c)
 
 if b != 0:
-    division = a / b
-    entero = a % b == 0
+    DIVICION = a / b
+    ENTERO = a % b == 0
 else:
     print("No se puede dividir por cero")
-    division = 0.0
-    entero = False
+    DIVICION = 0.0
+    ENTERO = False
 
-print("La división de", a, "y", b, "es:", division)
-print("Es divisor:", entero)
+print("La división de", a, "y", b, "es:", DIVICION)
+print("Es divisor:", ENTERO)
 
 porcentaje = a * b / 100
 
