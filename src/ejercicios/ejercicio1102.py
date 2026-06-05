@@ -11,7 +11,7 @@ concatenacion = cadena1.lower() + cadena2.lower()
 print("Concatenación:", concatenacion)
 
 letra = cadena1[0].lower()
-cantidad_letra = concatenacion.count(letra)
+cantidad_letra = cadena2.lower().count(letra)
 
 print("La letra '", letra, "' aparece", cantidad_letra,
       "veces en la cadena '", concatenacion, "'")
