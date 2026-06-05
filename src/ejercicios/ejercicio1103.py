@@ -15,14 +15,14 @@ numero1 = int(input("Ingrese primer numero entero:"))
 numero2 = int(input("Ingrese segundo numero entero:"))
 suma = numero1 + numero2
 print("la suma de ", numero1, " y ", numero2, " es:", suma)
-print("El", numero2,"% de", numero1,"es:", int(numero1*numero2/100))
 if numero2 != 0:
     division = numero1/numero2
-    print("la division de", numero1 , "y",  numero2, "es:", float(numero1/numero2))
+    print("la division de", numero1 , "y",  numero2, "es:", numero1/numero2)
     print("Es divisor:",numero1%numero2==0)
 else:
-    print("la division de", numero1, "y", numero2, "es:",division)
     print("Es divisor:",False)
+    print("la division de", numero1, "y", numero2, "es:",division)
     print("No se puede dividir por CERO")
+print("El", numero2,"% de", numero1,"es:", int(numero1*numero2/100))
 #print("El ", numero2, "% " "de ",numero1, "es", "{:.2f}".format(numero1 * (numero2/100)))
 #print("El precio es $", numero1)
