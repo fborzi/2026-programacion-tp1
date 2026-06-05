@@ -2,13 +2,13 @@
 
 a = input("Introduzca una cadena de caracteres: ")
 b = input("Introduzca una nueva cadena de caracteres: ")
+
 cantidaddeveces = b.count(a)
 primeraletra = a[0]
-cantidad2 = b.count(primeraletra)
+cantidad2 = b.lower().count(primeraletra.lower())
 
 print("Cantidad de veces que aparece:", cantidaddeveces)
-print(f"Concatenación: {a} {b.lower()}")
-
+print(f"Concatenación: {a.lower()}{b.lower()}")
 
 if cantidad2 == 1:
     print(
