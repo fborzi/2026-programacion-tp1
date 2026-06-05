@@ -12,9 +12,9 @@ Restricción: No es posible utilizar el metodo split().
 fecha_entrada = input("Ingresa la fecha (formato dd/mm/aaaa):")
 dia = fecha_entrada[0:2]
 mes = fecha_entrada[3:5]
-año = fecha_entrada[6:10]
+anio = fecha_entrada[6:10]
 
-print(f"Formato: {año}-{mes}-{dia}")
+print(f"Formato: {anio}-{mes}-{dia}")
 print(f"El día es: {dia}")
 print(f"El mes es: {mes}")
-print(f"El año es: {año}")
+print(f"El año es: {anio}")
