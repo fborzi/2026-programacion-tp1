@@ -18,10 +18,10 @@ else:
 
 print(cadena.upper())
 
-vocales = "aeiou"
+VOCALES = "aeiou"
 aux = 0
 
-for letra in vocales:
+for letra in VOCALES:
     if letra in cadena:
         aux += 1
 
