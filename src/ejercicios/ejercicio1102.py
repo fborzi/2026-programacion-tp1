@@ -7,11 +7,11 @@ cantidad = cadena2.count(cadena1)
 print(f"Cantidad de veces que aparece: {cantidad}")
 
 if cadena2:
-    cadena2_modificada = cadena2[0].lower() + cadena2[1:]
+    CADENA2_MODIFICADA = cadena2[0].lower() + cadena2[1:]
 else:
-    cadena2_modificada = ""
+    CADENA2_MODIFICADA = ""
 
-concatenacion = cadena1 + cadena2_modificada
+concatenacion = cadena1 + CADENA2_MODIFICADA
 print(f"Concatenación: {concatenacion}")
 
 primera_letra = cadena1[0]
