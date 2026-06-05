@@ -1,7 +1,7 @@
 """
 Leer desde teclado una cadena de caracteres y luego
-
-a. Mostrar en pantalla la cadena ingresada. ¿Qué diferencia hay entre mostrarla en el intérprete y mostrarla dentro de un archivo.py?
+a. Mostrar en pantalla la cadena ingresada.
+¿Qué diferencia hay entre mostrarla en el intérprete y mostrarla dentro de un archivo.py?
 b. Mostrar la longitud de la misma
 c. Indicar si existe en la misma la palabra 'la'.
 d. Convertir la cadena a mayúsculas y mostrarla en pantalla.
@@ -13,7 +13,7 @@ print("La cantidad de caracteres es: ", len(cadena))
 
 if "la" in cadena:
     print("Contiene 'la': Si")
-else: 
+else:
     print("Contiene 'la': No")
 
 print(cadena.upper())

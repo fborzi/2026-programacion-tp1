@@ -1,9 +1,10 @@
 """
 Leer desde teclado dos cadena de caracteres y luego
-
 a. Imprimir la cantidad de veces que se encuentra la primera cadena en la segunda.
-b. Generar una nueva cadena con la concatenación de ambas. La segunda cadena deberá comenzar con minúscula (independientemente de cómo la haya ingresado el usuario).
-c. Contar cuántas veces aparece la primera letra de la primer cadena en la segunda cadena e informar con el siguiente formato: "La letra .. aparece .. veces en la cadena ..."
+b. Generar una nueva cadena con la concatenación de ambas. 
+La segunda cadena deberá comenzar con minúscula (independientemente de cómo la haya ingresado el usuario).
+c. Contar cuántas veces aparece la primera letra de la primer cadena
+en la segunda cadena e informar con el siguiente formato: "La letra .. aparece .. veces en la cadena ..."
 """
 
 cadena1 = input("Escribir la cadena 1 : ")
