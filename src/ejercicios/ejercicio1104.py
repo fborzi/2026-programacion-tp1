@@ -1,7 +1,10 @@
-fecha = input("Ingrese una fecha: ")
+fecha = input("Ingrese una fecha:")
+              
+formato = fecha[8:] + "-" + fecha[3:5] + "-" + fecha[0:2] 
+print("Formato:", formato)
 
-dia = fecha[0:2]
-print("El dia es:", dia)
+día = fecha[0:2]
+print("El día es:", día)
 
 mes = fecha[3:5]
 print("El mes es:", mes)
@@ -9,4 +12,4 @@ print("El mes es:", mes)
 año = fecha[6:10]
 print("El año es:", año)
 
-print("La fecha invertida es:", año + "/" + mes + "/" + dia)
+print("La fecha invertida es:", formato)
